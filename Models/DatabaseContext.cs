@@ -1,0 +1,87 @@
+﻿using Projekt.Properties;
+using SQLite;
+using System.Linq.Expressions;
+
+namespace Projekt.Models
+{
+    public class DatabaseContext : IAsyncDisposable
+    {
+        private DatabaseProperties databaseProperties;
+
+        private SQLiteAsyncConnection _connection;
+        private SQLiteAsyncConnection Database
+        {
+            get
+            {
+                if (_connection == null)
+                {
+                    _connection = new SQLiteAsyncConnection(databaseProperties.DbPath, databaseProperties.DbConnectionFlags);
+                }
+                return _connection;
+            }
+        }
+
+        public DatabaseContext(DatabaseProperties databaseProperties)
+        {
+            this.databaseProperties = databaseProperties;
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await _connection?.CloseAsync();
+        }
+        private async Task CreateTableIfNotExists<TTable>() where TTable : class, new()
+        {
+            await Database.CreateTableAsync<TTable>();
+        }
+
+        private async Task<TResult> Execute<TTable, TResult>(Func<Task<TResult>> action) where TTable : class, new()
+        {
+            await CreateTableIfNotExists<TTable>();
+            return await action();
+        }
+
+        private async Task<AsyncTableQuery<TTable>> GetTableAsync<TTable>() where TTable : class, new()
+        {
+            await CreateTableIfNotExists<TTable>();
+            return Database.Table<TTable>();
+        }
+
+        protected async Task<IEnumerable<TTable>> GetAllAsync<TTable>() where TTable : class, new()
+        {
+            var table = await GetTableAsync<TTable>();
+            return await table.ToListAsync();
+        }
+
+        protected async Task<IEnumerable<TTable>> GetFileteredAsync<TTable>(Expression<Func<TTable, bool>> predicate) where TTable : class, new()
+        {
+            var table = await GetTableAsync<TTable>();
+            return await table.Where(predicate).ToListAsync();
+        }
+
+        protected async Task<TTable> GetItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
+        {
+            return await Execute<TTable, TTable>(async () => await Database.GetAsync<TTable>(primaryKey));
+        }
+
+        protected async Task<bool> AddItemAsync<TTable>(TTable item) where TTable : class, new()
+        {
+            return await Execute<TTable, bool>(async () => await Database.InsertAsync(item) > 0);
+        }
+
+        protected async Task<bool> UpdateItemAsync<TTable>(TTable item) where TTable : class, new()
+        {
+            return await Execute<TTable, bool>(async () => await Database.UpdateAsync(item) > 0);
+        }
+
+        protected async Task<bool> DeleteItemAsync<TTable>(TTable item) where TTable : class, new()
+        {
+            return await Execute<TTable, bool>(async () => await Database.DeleteAsync(item) > 0);
+        }
+
+        protected async Task<bool> DeleteItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
+        {
+            return await Execute<TTable, bool>(async () => await Database.DeleteAsync<TTable>(primaryKey) > 0);
+        }
+    }
+}
