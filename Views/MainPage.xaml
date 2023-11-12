@@ -11,34 +11,76 @@
         <extensions:BreakpointBehavior />
     </ContentPage.Behaviors>
 
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="Responsive">
+            <VisualState Name="ExtraSmall">
+                <VisualState.StateTriggers>
+                    <OrientationStateTrigger Orientation="Portrait" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*, Auto"/>
+                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*"/>
+                    <Setter TargetName="buttons" Property="Grid.Row" Value="1"/>
+                    <Setter TargetName="buttons" Property="Grid.Column" Value="0"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="Small">
+                <VisualState.Setters>
+                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*, Auto"/>
+                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*"/>
+                    <Setter TargetName="buttons" Property="Grid.Row" Value="1"/>
+                    <Setter TargetName="buttons" Property="Grid.Column" Value="0"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="Medium">
+                <VisualState.StateTriggers>
+                    <OrientationStateTrigger Orientation="Landscape" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
+                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
+                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
+                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="Large">
+                <VisualState.Setters>
+                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
+                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
+                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
+                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="ExtraLarge">
+                <VisualState.Setters>
+                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
+                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
+                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
+                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="ExtraExtraLarge">
+                <VisualState.Setters>
+                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
+                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
+                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
+                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 
-
-    <Grid x:Name="Scrollview"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand">
-        <Frame x:Name="registerFrame" VerticalOptions="FillAndExpand" BackgroundColor="Yellow"  TranslationY="{Binding Source={RelativeSource Self}, Path=Height, Converter={converters:NegativeValueConverter}}">
-            <ScrollView>
-                <StackLayout>
-                    <Label Text="Rejestracja"/>
-                    <Button Text="Wróć" Clicked="Button_Clicked_1"/>
-                </StackLayout>
-            </ScrollView>
-        </Frame>
-        <Frame x:Name="mainFrame" VerticalOptions="FillAndExpand" BackgroundColor="Green">
-            <StackLayout VerticalOptions="FillAndExpand">
-                <Button Text="Zarejestruj się" VerticalOptions="CenterAndExpand" Clicked="Button_Clicked_2"/>
-                <Button Text="Zaloguj się" VerticalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
+    <ContentPage.Content>
+        <Grid x:Name="mainGrid" RowDefinitions="*, Auto" ColumnDefinitions="*">
+            <StackLayout>
+                <Label>Landing</Label>
             </StackLayout>
-        </Frame>
-        <Frame x:Name="loginFrame" VerticalOptions="FillAndExpand" BackgroundColor="Blue" TranslationY="{Binding Source={RelativeSource Self}, Path=Height}">
-            <ScrollView>
-                <StackLayout>
-                    <Button Text="Wróć" Clicked="Button_Clicked_1"/>
-                    <Label Text="Logowanie"/>
-                </StackLayout>
-            </ScrollView>
-        </Frame>
-    </Grid>
+            <StackLayout Grid.Row="1" x:Name="buttons">
+                <Button Text="Zaloguj się" Command="{Binding GoToLoginPageCommand}"/>
+                <Button Text="Zarejestruj się" Command="{Binding GoToRegistrationPageCommand}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
 
 
 
