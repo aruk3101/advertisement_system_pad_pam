@@ -4,46 +4,43 @@
              x:Class="Projekt.MainPage"
              xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
              xmlns:extensions="clr-namespace:Projekt.Extensions"
-             x:DataType ="viewmodels:MainViewModel">
+             xmlns:converters="clr-namespace:Projekt.Converters"
+             x:DataType ="viewmodels:MainViewModel"
+             x:Name="currentPage">
     <ContentPage.Behaviors>
         <extensions:BreakpointBehavior />
     </ContentPage.Behaviors>
 
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="Responsive">
-            <VisualState x:Name="ExtraExtraLarge">
-                <VisualState.Setters>
-                    <Setter Property="BackgroundColor" Value="LightGray"/>
 
-                    <Setter TargetName="MainLabel" Property="Label.TextColor" Value="Black"/>
-                    <Setter TargetName="MainLabel" Property="Label.FontSize" Value="128"/>
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState x:Name="Large">
-                <VisualState.Setters>
-                    <Setter Property="BackgroundColor" Value="Blue"/>
 
-                    <Setter TargetName="MainLabel" Property="Label.TextColor" Value="Green"/>
-                    <Setter TargetName="MainLabel" Property="Label.FontSize" Value="96"/>
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState x:Name="Medium">
-                <VisualState.Setters>
-                    <Setter Property="BackgroundColor" Value="Azure"/>
-
-                    <Setter TargetName="MainLabel" Property="Label.TextColor" Value="Red"/>
-                    <Setter TargetName="MainLabel" Property="Label.FontSize" Value="48"/>
-
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
-
-    <Grid>
-        <Label x:Name="MainLabel"
-               Text="My Application"
-               VerticalOptions="Center" 
-               HorizontalOptions="Center" />
+    <Grid x:Name="Scrollview"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+        <Frame x:Name="registerFrame" VerticalOptions="FillAndExpand" BackgroundColor="Yellow"  TranslationY="{Binding Source={RelativeSource Self}, Path=Height, Converter={converters:NegativeValueConverter}}">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Rejestracja"/>
+                    <Button Text="Wróć" Clicked="Button_Clicked_1"/>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+        <Frame x:Name="mainFrame" VerticalOptions="FillAndExpand" BackgroundColor="Green">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Button Text="Zarejestruj się" VerticalOptions="CenterAndExpand" Clicked="Button_Clicked_2"/>
+                <Button Text="Zaloguj się" VerticalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
+            </StackLayout>
+        </Frame>
+        <Frame x:Name="loginFrame" VerticalOptions="FillAndExpand" BackgroundColor="Blue" TranslationY="{Binding Source={RelativeSource Self}, Path=Height}">
+            <ScrollView>
+                <StackLayout>
+                    <Button Text="Wróć" Clicked="Button_Clicked_1"/>
+                    <Label Text="Logowanie"/>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </Grid>
+
+
+
 
 </ContentPage>
