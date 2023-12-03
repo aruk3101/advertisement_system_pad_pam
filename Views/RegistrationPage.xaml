@@ -2,12 +2,157 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.RegistrationPage"
-             Title="Zarejestruj się"
-             Shell.TabBarIsVisible="True">
-    <VerticalStackLayout>
-        <Label 
-            Text="RegistrationPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:RegistrationViewModel">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="Responsive">
+            <VisualState Name="ExtraSmall">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraSmall}" />
+                    <OrientationStateTrigger Orientation="Portrait" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="bxv_1" Property="BoxView.WidthRequest" Value="120"/>
+                    <Setter TargetName="bxv_1" Property="BoxView.HeightRequest" Value="120"/>
+                    <Setter TargetName="bxv_1" Property="BoxView.CornerRadius" Value="60"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.WidthRequest" Value="120"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.HeightRequest" Value="120"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.CornerRadius" Value="60"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.WidthRequest" Value="100"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.HeightRequest" Value="100"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.CornerRadius" Value="50"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.WidthRequest" Value="100"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.HeightRequest" Value="100"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.CornerRadius" Value="50"/>
+                    <Setter TargetName="contentStackLayout" Property="AbsoluteLayout.LayoutBounds" Value="0,0,1,1"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="Medium">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource Medium}" />
+                    <OrientationStateTrigger Orientation="Landscape" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="bxv_1" Property="BoxView.WidthRequest" Value="240"/>
+                    <Setter TargetName="bxv_1" Property="BoxView.HeightRequest" Value="240"/>
+                    <Setter TargetName="bxv_1" Property="BoxView.CornerRadius" Value="120"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.WidthRequest" Value="240"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.HeightRequest" Value="240"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.CornerRadius" Value="120"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.WidthRequest" Value="200"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.HeightRequest" Value="200"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.CornerRadius" Value="100"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.WidthRequest" Value="200"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.HeightRequest" Value="200"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.CornerRadius" Value="100"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="ExtraLarge">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraLarge}" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="bxv_1" Property="BoxView.WidthRequest" Value="360"/>
+                    <Setter TargetName="bxv_1" Property="BoxView.HeightRequest" Value="360"/>
+                    <Setter TargetName="bxv_1" Property="BoxView.CornerRadius" Value="180"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.WidthRequest" Value="360"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.HeightRequest" Value="360"/>
+                    <Setter TargetName="bxv_3" Property="BoxView.CornerRadius" Value="180"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.WidthRequest" Value="300"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.HeightRequest" Value="300"/>
+                    <Setter TargetName="bxv_2" Property="BoxView.CornerRadius" Value="150"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.WidthRequest" Value="300"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.HeightRequest" Value="300"/>
+                    <Setter TargetName="bxv_4" Property="BoxView.CornerRadius" Value="150"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    
+    <AbsoluteLayout BackgroundColor="{StaticResource White}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <BoxView x:Name="bxv_1"
+            WidthRequest="120"
+            HeightRequest="120"
+            Color="{StaticResource Primary40}"
+            CornerRadius="60"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.99,0.01,0,0"/>
+        <BoxView x:Name="bxv_2"
+            WidthRequest="100"
+            HeightRequest="100"
+            Color="{StaticResource Primary}"
+            CornerRadius="50"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="1,0,1,1"/>
+
+        <BoxView x:Name="bxv_3"
+              WidthRequest="120"
+              HeightRequest="120"
+              Color="{StaticResource Primary40}"
+              CornerRadius="60"
+              AbsoluteLayout.LayoutFlags="PositionProportional"
+              AbsoluteLayout.LayoutBounds="0.2,0.99,0,0"/>
+        <BoxView x:Name="bxv_4"
+                 WidthRequest="100"
+                 HeightRequest="100"
+                 Color="{StaticResource Primary}"
+                 CornerRadius="50"
+                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                 AbsoluteLayout.LayoutBounds="0.2,1,1,1"/>
+
+        <VerticalStackLayout AbsoluteLayout.LayoutFlags="All"
+                             AbsoluteLayout.LayoutBounds="0,0,0.8,0.8"
+                             Padding="20"
+                             x:Name="contentStackLayout">
+
+            <Border Stroke="{StaticResource Primary70}"
+                    StrokeThickness="4"
+                    StrokeShape="RoundRectangle 10,10,10,10">
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      BackgroundColor="{StaticResource Primary20}"
+                      Padding="30"
+                      RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+                    <Label Text="Zarejestruj się" FontSize="Header" TextTransform="Uppercase"/>
+                    <userControls:Input Grid.Row="1"
+                                        x:Name="EmailEntry"
+                                        Placeholder="Custom Placeholder"
+                                        IconSource="person_icon.png"
+                                        Text="{Binding Email, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
+                                        ErrorMessage="{Binding Errors[EmailEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
+                    <userControls:Input Grid.Row="2"
+                                        x:Name="PasswordHashEntry"
+                                        Placeholder="Custom Placeholder"
+                                        IconSource="person_icon.png"
+                                        Text="{Binding PasswordHash, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
+                                        ErrorMessage="{Binding Errors[PasswordHashEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
+                    <userControls:Input Grid.Row="3"
+                                        x:Name="FirstNameEntry"
+                                        Placeholder="Custom Placeholder"
+                                        IconSource="person_icon.png"
+                                        Text="{Binding FirstName, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
+                                        ErrorMessage="{Binding Errors[FirstNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
+                    <userControls:Input Grid.Row="4"
+                                        x:Name="LastNameEntry"
+                                        Placeholder="Custom Placeholder"
+                                        IconSource="person_icon.png"
+                                        Text="{Binding LastName, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
+                                        ErrorMessage="{Binding Errors[LastNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
+                    <Button Text="Submit" Command="{Binding SubmitCommand}" Grid.Row="5">
+                        
+                    </Button>
+                </Grid>
+                
+            </Border>
+            
+
+        </VerticalStackLayout>
+    </AbsoluteLayout>
 </ContentPage>

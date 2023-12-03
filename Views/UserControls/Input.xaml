@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.UserControls.Input">
+    <StackLayout Margin="5">
+        <Border Stroke="{StaticResource Primary30}"
+         StrokeThickness="1">
+            <StackLayout BackgroundColor="{StaticResource White}">
+                <StackLayout Orientation="Horizontal">
+                    <Image WidthRequest="50"
+                           HeightRequest="50"
+                           Source="{Binding IconSource}"/>
+                    <BoxView Color="{StaticResource Primary30}"
+                             WidthRequest="1"
+                             VerticalOptions="FillAndExpand"/>
+                    <Entry Placeholder="{Binding Placeholder}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           Text="{Binding Text}"/>
+                </StackLayout>
+            </StackLayout>
+        </Border>
+        <ListView ItemsSource="{Binding ErrorMessage}" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="0" Margin="0">
+                            <Label Text="{Binding}" FontSize="Micro" TextColor="Red"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
+</ContentView>

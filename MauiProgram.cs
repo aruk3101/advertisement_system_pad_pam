@@ -1,6 +1,8 @@
-﻿using Projekt.Models.Repositories;
+﻿using CommunityToolkit.Maui;
+using Projekt.Models.Repositories;
 using Projekt.Properties;
 using Projekt.ViewModels;
+using Projekt.Views;
 
 namespace Projekt;
 
@@ -10,6 +12,7 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
+			.UseMauiCommunityToolkit()
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
@@ -23,6 +26,12 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainViewModel>();
 		builder.Services.AddSingleton<MainPage>();
 
-		return builder.Build();
+        builder.Services.AddSingleton<RegistrationViewModel>();
+        builder.Services.AddSingleton<RegistrationPage>();
+
+        builder.Services.AddSingleton<LoginViewModel>();
+        builder.Services.AddSingleton<LoginPage>();
+
+        return builder.Build();
 	}
 }
