@@ -7,14 +7,12 @@
              xmlns:converters="clr-namespace:Projekt.Converters"
              x:DataType ="viewmodels:MainViewModel"
              x:Name="currentPage">
-    <ContentPage.Behaviors>
-        <extensions:BreakpointBehavior />
-    </ContentPage.Behaviors>
 
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="Responsive">
             <VisualState Name="ExtraSmall">
                 <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraSmall}" />
                     <OrientationStateTrigger Orientation="Portrait" />
                 </VisualState.StateTriggers>
                 <VisualState.Setters>
@@ -25,6 +23,9 @@
                 </VisualState.Setters>
             </VisualState>
             <VisualState Name="Small">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource Small}" />
+                </VisualState.StateTriggers>
                 <VisualState.Setters>
                     <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*, Auto"/>
                     <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*"/>
@@ -34,6 +35,7 @@
             </VisualState>
             <VisualState Name="Medium">
                 <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource Medium}" />
                     <OrientationStateTrigger Orientation="Landscape" />
                 </VisualState.StateTriggers>
                 <VisualState.Setters>
@@ -44,6 +46,9 @@
                 </VisualState.Setters>
             </VisualState>
             <VisualState Name="Large">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource Large}" />
+                </VisualState.StateTriggers>
                 <VisualState.Setters>
                     <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
                     <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
@@ -52,6 +57,9 @@
                 </VisualState.Setters>
             </VisualState>
             <VisualState Name="ExtraLarge">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraLarge}" />
+                </VisualState.StateTriggers>
                 <VisualState.Setters>
                     <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
                     <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
@@ -60,6 +68,9 @@
                 </VisualState.Setters>
             </VisualState>
             <VisualState Name="ExtraExtraLarge">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraExtraLarge}" />
+                </VisualState.StateTriggers>
                 <VisualState.Setters>
                     <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
                     <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>

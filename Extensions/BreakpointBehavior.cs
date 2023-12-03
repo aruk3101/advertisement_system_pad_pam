@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt.Extensions
 {
+    //deprecated by AdaptiveTriggers
     public class BreakpointBehavior : Behavior<Page>
     {
         protected override void OnAttachedTo(Page page)

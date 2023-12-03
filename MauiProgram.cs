@@ -1,7 +1,6 @@
 ﻿using Projekt.Models.Repositories;
 using Projekt.Properties;
 using Projekt.ViewModels;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projekt;
 
