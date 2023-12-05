@@ -7,16 +7,24 @@ namespace Projekt.Models.Common.Utilities
     {
         public static async void DisplayUnexpectedErrorAlert()
         {
-            await Shell.Current.DisplayAlert("Wystąpił nieoczekiwany błąd!",
-                "Podczas wykonywania operacji wystąpił nieoczekiwany błąd. Spróbuj ponownie później lub skontaktuj się z administratorem.",
-                "OK");
+            if (Shell.Current != null)
+            {
+                await Shell.Current.DisplayAlert("Wystąpił nieoczekiwany błąd!",
+               "Podczas wykonywania operacji wystąpił nieoczekiwany błąd. Spróbuj ponownie później lub skontaktuj się z administratorem.",
+               "OK");
+            }
         }
 
-        public static async void DisplayAlert(string title, string message)
+        public static async Task DisplayAlert(string title, string message)
         {
-            await Shell.Current.DisplayAlert(title,
+            if (Shell.Current != null)
+            {
+                await Shell.Current.DisplayAlert(title,
                 message,
                 "OK");
+            }
         }
+
+        public static async void DisplayDeleteExceptionAlert() => await DisplayAlert("Wystąpił błąd", "Podczas usuwania obiektu wystąpił błąd");
     }
 }

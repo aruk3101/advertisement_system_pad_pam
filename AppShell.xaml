@@ -7,15 +7,20 @@
     xmlns:views="clr-namespace:Projekt.Views"
     Shell.FlyoutBehavior="Disabled"
     FlyoutBackgroundColor="{StaticResource Primary30}">
-    <Shell.Resources>
-        <Style TargetType="FlyoutItem"/>
-    </Shell.Resources>
-    <FlyoutItem Title="DashBoard"
+
+    <FlyoutItem Title="Dashboard"
             Icon="home_icon.png">
         <Tab>
             <ShellContent
-                ContentTemplate="{DataTemplate views:DashBoardPage}"
-                Route="dashboard"/>
+                ContentTemplate="{DataTemplate views:DashBoardPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Profil"
+        Icon="home_icon.png">
+        <Tab>
+            <ShellContent
+            ContentTemplate="{DataTemplate views:UserProfilePage}"/>
         </Tab>
     </FlyoutItem>
 

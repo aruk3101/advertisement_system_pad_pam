@@ -38,7 +38,7 @@ namespace Projekt.ViewModels
         string lastName;
 
         [RelayCommand]
-        public async Task Submit()
+        public async Task Submit(Action goToLoginPage)
         {
             ResetErrors();
             User user = new User()
@@ -63,13 +63,16 @@ namespace Projekt.ViewModels
                 bool result = await registerUser(user);
                 if (!result)
                 {
-                    ShellUtilities.DisplayUnexpectedErrorAlert();
+                    //ShellUtilities.DisplayUnexpectedErrorAlert();
+
                 }
                 else
                 {
-                    ShellUtilities.DisplayAlert("Sukces!",
-                        "Zarejestrowano pomyślnie! Możesz teraz się zalogować.");
-                    await AppShell.Current.GoToAsync("../login", true);
+                    //ShellUtilities.DisplayAlert("Sukces!",
+                    //    "Zarejestrowano pomyślnie! Możesz teraz się zalogować.");
+                    //await AppShell.Current.GoToAsync("../login", true);
+
+                    goToLoginPage();
                 }
             }
         }
@@ -81,7 +84,7 @@ namespace Projekt.ViewModels
                 await userRepository.AddUserAsync(user);
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }

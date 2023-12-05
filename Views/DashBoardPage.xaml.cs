@@ -11,12 +11,23 @@ public partial class DashBoardPage : ContentPage
 		this.BindingContext = vm;
     }
 
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        CheckAuth();
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        if(AuthUtilities.LoggedInUserId == 0)
+        CheckAuth();
+    }
+
+    private void CheckAuth()
+    {
+        if (AuthUtilities.LoggedInUserId == 0)
         {
-            AppShell.Current.GoToAsync("mainpage", false);
+            AppShell.Current.GoToAsync("landing", false);
         }
     }
 }

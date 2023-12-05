@@ -19,6 +19,7 @@ namespace Projekt.ViewModels
             {
                 error.Value.Clear();
             }
+            NotifyErrorsChanged();
         }
 
         protected void UpdateErorrs(List<ValidationResult> violations)

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.ContentViews.UserDataContentView"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:UserDataViewModel">
+    <VerticalStackLayout>
+        <userControls:Input Placeholder="Imię"
+ IconSource="person_icon.png"
+ Text="{Binding FirstName, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+ ErrorMessage="{Binding Errors[FirstNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Nazwisko"
+  IconSource="person_icon.png"
+  Text="{Binding LastName, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+  ErrorMessage="{Binding Errors[LastNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Data urodzenia"
+  IconSource="person_icon.png"
+  Text="{Binding BirthDate, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+  ErrorMessage="{Binding Errors[BirthDateEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Numer telefonu"
+  IconSource="person_icon.png"
+  Text="{Binding PhoneNumber, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+  ErrorMessage="{Binding Errors[PhoneNumberEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Miejscowość"
+ IconSource="person_icon.png"
+ Text="{Binding City, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+ ErrorMessage="{Binding Errors[CityEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Miasto"
+  IconSource="person_icon.png"
+  Text="{Binding PostalName, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+  ErrorMessage="{Binding Errors[PostalNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Kod pocztowy"
+   IconSource="person_icon.png"
+   Text="{Binding PostalCode, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+   ErrorMessage="{Binding Errors[PostalCodeEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Ulica"
+    IconSource="person_icon.png"
+    Text="{Binding Street, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+    ErrorMessage="{Binding Errors[StreetEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Numer domu"
+ IconSource="person_icon.png"
+ Text="{Binding StreetNumber, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+ ErrorMessage="{Binding Errors[StreetNumberEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+
+        <userControls:Input Placeholder="Numer lokalu"
+ IconSource="person_icon.png"
+ Text="{Binding ApartmentNumber, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+ ErrorMessage="{Binding Errors[ApartmentNumberEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+        <userControls:Input Placeholder="Państwo"
+  IconSource="person_icon.png"
+  Text="{Binding Country, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
+  ErrorMessage="{Binding Errors[CountryEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}}"/>
+        <Button Text="Edytuj" Command="{Binding SubmitCommand}"/>
+    </VerticalStackLayout>
+
+
+</ContentView>

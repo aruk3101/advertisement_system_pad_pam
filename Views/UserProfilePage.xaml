@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.UserProfilePage"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:UserProfileViewModel"
+             xmlns:contentViews ="clr-namespace:Projekt.Views.ContentViews"
+             Shell.FlyoutBehavior="Flyout">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Background="{StaticResource Primary30}">
+            <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap" JustifyContent="Center">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Content="{Binding .}"
+                             CheckedChanged="RadioButton_CheckedChanged">
+                            <RadioButton.ControlTemplate>
+                                <ControlTemplate>
+                                    <Grid RowDefinitions="Auto,4" ColumnDefinitions="Auto">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CheckedStates">
+                                                    <VisualState x:Name="Checked">
+                                                        <VisualState.Setters>
+                                                            <Setter
+                            TargetName="TextLabel"
+                            Property="Label.TextColor"
+                            Value="{StaticResource Primary}"/>
+                                                            <Setter
+                            TargetName="Indicator"
+                            Property="BoxView.Color"
+                            Value="{StaticResource Primary}"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState x:Name="Unchecked">
+                                                        <VisualState.Setters>
+                                                            <Setter
+                            TargetName="TextLabel"
+                            Property="Label.TextColor"
+                            Value="White"/>
+                                                            <Setter
+                            TargetName="Indicator"
+                            Property="BoxView.Color"
+                            Value="Transparent"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Label Text="{TemplateBinding Content}" 
+                                       x:Name="TextLabel"
+                                       Margin="10,10,10,0"/>
+                                        <BoxView x:Name="Indicator" Grid.Row="1" Color="Transparent"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </RadioButton.ControlTemplate>
+                        </RadioButton>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+                <BindableLayout.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Dane</x:String>
+                        <x:String>Edukacja</x:String>
+                        <x:String>Doświadczenie</x:String>
+                        <x:String>Umiejętności</x:String>
+                        <x:String>Kursy</x:String>
+                        <x:String>Języki</x:String>
+                        <x:String>Linki</x:String>
+                    </x:Array>
+                </BindableLayout.ItemsSource>
+            </FlexLayout>
+            <BoxView HorizontalOptions="FillAndExpand"
+             HeightRequest ="4"
+             Color="{StaticResource Primary}"
+             Margin="0,10,0,10"
+             />
+            <!--<Grid x:Name="content" RowDefinitions="*">-->
+            <contentViews:UserDataContentView x:Name="userDataContentView" IsVisible="False"/>
+            <contentViews:UserEducationContentView x:Name="userEducationContentView" IsVisible="False"/>
+            <contentViews:UserExperienceContentView x:Name="userExperienceContentView" IsVisible="False"/>
+            <contentViews:UserSkillsContentView x:Name="userSkillsContentView" IsVisible="False"/>
+            <contentViews:UserCoursesContentView x:Name="userCoursesContentView" IsVisible="False"/>
+            <contentViews:UserLanguagesContentView x:Name="userLanguagesContentView" IsVisible="False"/>
+            <contentViews:UserLinksContentView x:Name="userLinksContentView" IsVisible="False"/>
+            <!--</Grid>-->
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>
