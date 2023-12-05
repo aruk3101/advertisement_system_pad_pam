@@ -5,9 +5,9 @@
              xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
              xmlns:extensions="clr-namespace:Projekt.Extensions"
              xmlns:converters="clr-namespace:Projekt.Converters"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
              x:DataType ="viewmodels:MainViewModel"
-             x:Name="currentPage">
-
+             x:Name="currentPage" BackgroundImageSource="bg.jpg">
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="Responsive">
             <VisualState Name="ExtraSmall">
@@ -20,17 +20,7 @@
                     <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*"/>
                     <Setter TargetName="buttons" Property="Grid.Row" Value="1"/>
                     <Setter TargetName="buttons" Property="Grid.Column" Value="0"/>
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState Name="Small">
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="{StaticResource Small}" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*, Auto"/>
-                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*"/>
-                    <Setter TargetName="buttons" Property="Grid.Row" Value="1"/>
-                    <Setter TargetName="buttons" Property="Grid.Column" Value="0"/>
+                    <Setter TargetName="landingLabel" Property="Label.FontSize" Value="32"/>
                 </VisualState.Setters>
             </VisualState>
             <VisualState Name="Medium">
@@ -45,52 +35,42 @@
                     <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
                 </VisualState.Setters>
             </VisualState>
-            <VisualState Name="Large">
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="{StaticResource Large}" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
-                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
-                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
-                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState Name="ExtraLarge">
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraLarge}" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
-                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
-                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
-                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState Name="ExtraExtraLarge">
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraExtraLarge}" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter TargetName="mainGrid" Property="Grid.RowDefinitions" Value="*"/>
-                    <Setter TargetName="mainGrid" Property="Grid.ColumnDefinitions" Value="*, Auto"/>
-                    <Setter TargetName="buttons" Property="Grid.Row" Value="0"/>
-                    <Setter TargetName="buttons" Property="Grid.Column" Value="1"/>
-                </VisualState.Setters>
-            </VisualState>
         </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
 
     <ContentPage.Content>
-        <Grid x:Name="mainGrid" RowDefinitions="*, Auto" ColumnDefinitions="*">
-            <StackLayout>
-                <Label>Landing</Label>
-            </StackLayout>
-            <StackLayout Grid.Row="1" x:Name="buttons">
-                <Button Text="Zaloguj się" Command="{Binding GoToLoginPageCommand}"/>
-                <Button Text="Zarejestruj się" Command="{Binding GoToRegistrationPageCommand}"/>
-            </StackLayout>
-        </Grid>
+        <ScrollView>
+            <Grid x:Name="mainGrid" RowDefinitions="*, Auto" ColumnDefinitions="*">
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             x:Name="landingStackLayout">
+                    <Label Text="Kariera Zaczyna Się Tutaj"
+                           x:Name="landingLabel"
+                           FontSize="60"
+                           HorizontalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Image Source="landing_img.png"
+                           x:Name="landing_img"
+                           MaximumWidthRequest="500"
+                           HorizontalOptions="End"
+                           VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+                <StackLayout Grid.Row="1" x:Name="buttons">
+                    <Button Text="Zaloguj się"
+                            Command="{Binding GoToLoginPageCommand}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            MinimumWidthRequest="200"
+                            FontSize="24"/>
+                    <Button Text="Zarejestruj się" Command="{Binding GoToRegistrationPageCommand}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            FontSize="24"/>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+
     </ContentPage.Content>
 
 
