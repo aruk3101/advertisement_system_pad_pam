@@ -7,7 +7,8 @@
              xmlns:converters="clr-namespace:Projekt.Converters"
              xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
              x:DataType ="viewmodels:MainViewModel"
-             x:Name="currentPage" BackgroundImageSource="bg.jpg">
+             x:Name="currentPage" BackgroundImageSource="bg.jpg"
+             Shell.NavBarIsVisible="False">
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="Responsive">
             <VisualState Name="ExtraSmall">

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Projekt.Models.Common.Utilities;
 using Projekt.Models.Repositories;
 using Projekt.Properties;
 using Projekt.ViewModels;
@@ -31,6 +32,11 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddSingleton<LoginPage>();
+
+        builder.Services.AddSingleton<AuthUtilities>();
+
+        builder.Services.AddSingleton<DashBoardPage>();
+        builder.Services.AddSingleton<DashboardViewModel>();
 
         return builder.Build();
 	}

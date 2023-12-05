@@ -66,12 +66,16 @@
 	  <MauiXaml Update="Resources\Styles\Breakpoints.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DashBoardPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\UserControls\Input.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\icons\home_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\person_icon.png" />
 	</ItemGroup>
 

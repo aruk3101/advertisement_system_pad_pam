@@ -14,9 +14,11 @@ namespace Projekt.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         private UserRepository userRepository;
-        public LoginViewModel(UserRepository userRepository)
+        private AuthUtilities authUtilities;
+        public LoginViewModel(UserRepository userRepository, AuthUtilities authUtilities)
         {
             this.userRepository = userRepository;
+            this.authUtilities = authUtilities;
         }
 
         [ObservableProperty]
@@ -27,11 +29,11 @@ namespace Projekt.ViewModels
         [RelayCommand]
         public async Task Submit()
         {
-            User user = await userRepository.FindByEmailAndPassword(Email, PasswordHash);
-            if(user != null)
+            
+            if(await authUtilities.LogIn(Email, PasswordHash))
             {
                 ShellUtilities.DisplayAlert("Zalogowano!", "Zalogowano");
-                //TODO zmienic na przypisanie do jakiejś klasy Auth
+                await AppShell.Current.GoToAsync("../..", true);
             }
             else
             {
