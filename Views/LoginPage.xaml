@@ -132,7 +132,7 @@
                                     Placeholder="Hasło"
                                     IconSource="person_icon.png"
                                     Text="{Binding PasswordHash, Source={RelativeSource AncestorType={x:Type viewmodels:LoginViewModel}}, Mode=TwoWay}"/>
-                    <Button Text="Zaloguj się" Command="{Binding SubmitCommand}" Grid.Row="5">
+                    <Button Text="Zaloguj się" Clicked="Button_Clicked" Grid.Row="5">
 
                     </Button>
                 </Grid>

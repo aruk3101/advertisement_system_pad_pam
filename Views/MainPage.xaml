@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Projekt.MainPage"
+             x:Class="Projekt.Views.MainPage"
              xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
              xmlns:extensions="clr-namespace:Projekt.Extensions"
              xmlns:converters="clr-namespace:Projekt.Converters"
@@ -9,6 +9,17 @@
              x:DataType ="viewmodels:MainViewModel"
              x:Name="currentPage" BackgroundImageSource="bg.jpg"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <x:Double x:Key="ExtraSmall">0</x:Double>
+        <x:Double x:Key="Small">576</x:Double>
+        <x:Double x:Key="Medium">768</x:Double>
+        <x:Double x:Key="Large">992</x:Double>
+        <x:Double x:Key="ExtraLarge">1200</x:Double>
+        <x:Double x:Key="ExtraExtraLarge">1400</x:Double>
+    </ContentPage.Resources>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="Responsive">
             <VisualState Name="ExtraSmall">
@@ -59,12 +70,12 @@
                 </StackLayout>
                 <StackLayout Grid.Row="1" x:Name="buttons">
                     <Button Text="Zaloguj się"
-                            Command="{Binding GoToLoginPageCommand}"
+                            Clicked="Button_Clicked"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
                             MinimumWidthRequest="200"
                             FontSize="24"/>
-                    <Button Text="Zarejestruj się" Command="{Binding GoToRegistrationPageCommand}"
+                    <Button Text="Zarejestruj się" Clicked="Button_Clicked_1"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
                             FontSize="24"/>

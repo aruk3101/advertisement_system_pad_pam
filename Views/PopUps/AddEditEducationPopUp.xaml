@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Projekt.Views.PopUps.AddEditEducationPopUp"
+             xmlns:enumerated ="clr-namespace:Projekt.Models.Common.Enumerated"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:UserEducationViewModel"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
+             Size="210">
+    <ScrollView Padding="30" MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}">
+        <VerticalStackLayout>
+            <userControls:Input x:Name="SchoolNameEntry"
+                 Placeholder="Nazwa szkoły"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.SchoolName, Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[SchoolNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}}"/>
+            <userControls:Input x:Name="SchoolLocationEntry"
+                 Placeholder="Adres szkoły"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.SchoolLocation, Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[SchoolLocationEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}}"/>
+            <userControls:Input x:Name="SpecializationEntry"
+                 Placeholder="Specjalizacja"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.Specialization, Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[SpecializationEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}}"/>
+            <Picker
+                 x:Name="LevelEntry"
+                 Title="Poziom"
+                 TitleColor="Black"
+                 TextColor="Black"
+                 HorizontalOptions="FillAndExpand"
+                 SelectedItem="{Binding E.Level, Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}, Mode=TwoWay}"
+                 ItemsSource="{Binding Levels}"
+                 ItemDisplayBinding="{Binding .}"/>
+            <userControls:DateInput x:Name="PeriodStartEntry"
+                 IconSource="person_icon.png"
+                 Date="{Binding E.PeriodStart, Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[PeriodStartEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}}"/>
+            <userControls:DateInput x:Name="PeriodEndEntry"
+                 IconSource="person_icon.png"
+                 Date="{Binding E.PeriodEnd, Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[PeriodEndEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserEducationViewModel}}}"/>
+            <Button HorizontalOptions="Center" x:Name="actionButton" Text="Dodaj" Clicked="actionButton_Clicked_1"/>
+            <Button HorizontalOptions="Center" Text="Zamknij" Clicked="Button_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</mct:Popup>

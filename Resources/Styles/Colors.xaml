@@ -12,6 +12,10 @@
     <Color x:Key="Primary60">#4023a9</Color>
     <Color x:Key="Primary70">#301a7f</Color>
     <Color x:Key="Primary80">#201155</Color>
+
+    <Color x:Key="LightGreen">#32CD32</Color>
+    <Color x:Key="Green">#008000</Color>
+    <Color x:Key="DarkGreen">#354A21</Color>
     
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>

@@ -49,8 +49,12 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\bg.jpg" />
+	  <None Remove="Resources\Images\icons\add_icon.png" />
+	  <None Remove="Resources\Images\icons\delete_icon.png" />
+	  <None Remove="Resources\Images\icons\edit_icon.png" />
 	  <None Remove="Resources\Images\icons\person_icon.png" />
 	  <None Remove="Resources\Images\landing_img.png" />
+	  <None Remove="Resources\Images\outline_info_white_24dp.png" />
 	  <None Remove="Resources\Images\person_FILL0_wght400_GRAD0_opsz24.png" />
 	</ItemGroup>
 
@@ -66,17 +70,81 @@
 	  <MauiXaml Update="Resources\Styles\Breakpoints.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserCoursesContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserDataContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserEducationContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserExperienceContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserLanguagesContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserLinksContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\UserSkillsContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\DashBoardPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditCoursePopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditEducationPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditExperiencePopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditLanguagePopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditLinkPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditSkillPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UserControls\DateInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UserControls\EditorInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UserControls\FloatingAddButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserControls\Input.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\UserProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\icons\add_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\delete_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\edit_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\home_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\info_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\person_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\PopUps\AddEditLanguagePopUp.xaml.cs">
+	    <DependentUpon>AddEditLanguagePopUp.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\UserControls\DateInput.xaml.cs">
+	    <DependentUpon>DateInput.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

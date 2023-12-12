@@ -27,17 +27,18 @@ namespace Projekt.ViewModels
         string passwordHash;
 
         [RelayCommand]
-        public async Task Submit()
+        public async Task Submit(Action goToDashBoard)
         {
             
             if(await authUtilities.LogIn(Email, PasswordHash))
             {
-                ShellUtilities.DisplayAlert("Zalogowano!", "Zalogowano");
-                await AppShell.Current.GoToAsync("../..", true);
+                //ShellUtilities.DisplayAlert("Zalogowano!", "Zalogowano");
+                //await AppShell.Current.GoToAsync("../../..", true);
+                goToDashBoard();
             }
             else
             {
-                ShellUtilities.DisplayAlert("Wystąpił błąd", "Użytkownik o takich danych nie istnieje");
+                //ShellUtilities.DisplayAlert("Wystąpił błąd", "Użytkownik o takich danych nie istnieje");
             }
         }
     }

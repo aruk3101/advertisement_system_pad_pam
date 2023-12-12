@@ -1,10 +1,5 @@
-﻿using CommunityToolkit.Maui.Converters;
-using Projekt.Models.Entities;
+﻿using Projekt.Models.Entities;
 using Projekt.Models.Repositories;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projekt.Models.Common.Utilities
 {
@@ -35,6 +30,13 @@ namespace Projekt.Models.Common.Utilities
         public static void LogOut()
         {
             LoggedInUserId = 0;
+        }
+
+        public async Task<User> GetLoggedInUser()
+        {
+            if (LoggedInUserId == 0) return null;
+
+            return await userRepository.FindById(LoggedInUserId);
         }
     }
 }

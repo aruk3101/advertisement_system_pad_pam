@@ -14,6 +14,9 @@ public partial class Input : ContentView
     public static readonly BindableProperty ErrorMessageProperty =
         BindableProperty.Create(nameof(ErrorMessage), typeof(List<string>), typeof(Input), new List<string> { });
 
+    public static readonly BindableProperty EnabledProperty =
+      BindableProperty.Create(nameof(Enabled), typeof(bool), typeof(Input), true);
+
     public string Placeholder
     {
         get { return (string)GetValue(PlaceholderProperty); }
@@ -37,7 +40,13 @@ public partial class Input : ContentView
         }
         set { SetValue(ErrorMessageProperty, value); }
     }
-    
+
+    public bool Enabled
+    {
+        get { return (bool)GetValue(EnabledProperty); }
+        set { SetValue(EnabledProperty, value); }
+    }
+
     public Input()
 	{
 		InitializeComponent();

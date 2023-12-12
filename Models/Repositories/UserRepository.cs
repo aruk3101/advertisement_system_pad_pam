@@ -33,5 +33,15 @@ namespace Projekt.Models.Repositories
                 && user.PasswordHash == password);
             return result.Count() == 0 ? null : result.First();
         }
+
+        public async Task<User> FindById(int id)
+        {
+            return await base.GetItemByKeyAsync<User>(id);
+        }
+
+        public async Task<bool> Update(User user)
+        {
+            return await base.UpdateItemAsync<User>(user);
+        }
     }
 }

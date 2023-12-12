@@ -1,0 +1,12 @@
+<ImageButton
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Projekt.Views.UserControls.FloatingAddButton"
+    Aspect="Fill"
+    Source="add_icon.png"
+    WidthRequest="50"
+    HeightRequest="50"
+    BackgroundColor="{StaticResource DarkGreen}"
+    CornerRadius="25"
+    AbsoluteLayout.LayoutFlags="PositionProportional"
+    AbsoluteLayout.LayoutBounds="0.9,0.9,100,100"/>

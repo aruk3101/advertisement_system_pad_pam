@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Projekt.Views.PopUps.AddEditExperiencePopUp"
+             xmlns:enumerated ="clr-namespace:Projekt.Models.Common.Enumerated"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:UserExperienceViewModel"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
+             Size="210">
+    <ScrollView Padding="30" MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}">
+        <VerticalStackLayout>
+            <userControls:Input x:Name="PositionEntry"
+                 Placeholder="Stanowisko"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.Position, Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[PositionEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}}"/>
+            <userControls:Input x:Name="CompanyNameEntry"
+                 Placeholder="Nazwa firmy"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.CompanyName, Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[CompanyNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}}"/>
+            <userControls:Input x:Name="LocationEntry"
+                 Placeholder="Adres firmy"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.Location, Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[LocationEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}}"/>
+            <userControls:DateInput x:Name="PeriodStartEntry"
+                 IconSource="person_icon.png"
+                 Date="{Binding E.PeriodStart, Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[PeriodStartEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}}"/>
+            <userControls:DateInput x:Name="PeriodEndEntry"
+                 IconSource="person_icon.png"
+                 Date="{Binding E.PeriodEnd, Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[PeriodEndEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}}"/>
+            <userControls:EditorInput x:Name="DutiesEntry"
+                 Placeholder="Obowiązki"
+                 IconSource="person_icon.png"
+                 Text="{Binding E.Duties, Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}, Mode=TwoWay}"
+                 ErrorMessage="{Binding Errors[DutiesEntry], Source={RelativeSource AncestorType={x:Type viewmodels:UserExperienceViewModel}}}"/>
+            <Button HorizontalOptions="Center" x:Name="actionButton" Text="Dodaj" Clicked="actionButton_Clicked_1"/>
+            <Button HorizontalOptions="Center" Text="Zamknij" Clicked="Button_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</mct:Popup>
