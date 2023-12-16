@@ -1,5 +1,7 @@
-﻿using Projekt.ViewModels;
+﻿using Projekt.Models.Common.Utilities;
+using Projekt.ViewModels;
 using Projekt.Views.ContentViews;
+using System.Runtime.CompilerServices;
 
 namespace Projekt;
 
@@ -13,8 +15,10 @@ public partial class App : Application
 	
 	}
 
-    protected override void OnStart()
+    protected async override void OnStart()
     {
         base.OnStart();
+		AuthUtilities authUtilities = this.Handler.MauiContext.Services.GetService<AuthUtilities>();
+		await authUtilities.SetupAdminAccount();
     }
 }

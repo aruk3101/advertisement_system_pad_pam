@@ -14,6 +14,9 @@ namespace Projekt.Converters
             if(value is double)
             {
                 return -(double)value;
+            } else if(value is bool)
+            {
+                return !(bool)value;
             }
             return value;
         }

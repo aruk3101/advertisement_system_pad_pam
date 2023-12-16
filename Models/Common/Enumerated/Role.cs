@@ -9,6 +9,7 @@ namespace Projekt.Models.Common.Enumerated
     public enum Role
     {
         ADMIN,
-        USER
+        USER,
+        UNDEFINED,
     }
 }

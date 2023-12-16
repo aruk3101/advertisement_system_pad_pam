@@ -43,5 +43,11 @@ namespace Projekt.Models.Repositories
         {
             return await base.UpdateItemAsync<User>(user);
         }
+
+        public async Task<User> FindAdminUser()
+        {
+            var result = await base.GetFileteredAsync<User>(u => u.Email.Equals("admin@admin.com"));
+            return result.FirstOrDefault(defaultValue: null);
+        }
     }
 }

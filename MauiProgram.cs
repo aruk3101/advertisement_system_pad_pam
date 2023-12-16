@@ -32,6 +32,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<LinkRepository>();
         builder.Services.AddSingleton<AuthUtilities>();
 
+        builder.Services.AddSingleton<AppShellViewModel>();
 
         builder.Services.AddTransient<MainViewModel>();
 		builder.Services.AddTransient<MainPage>();

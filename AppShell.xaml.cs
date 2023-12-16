@@ -7,14 +7,23 @@ namespace Projekt;
 
 public partial class AppShell : Shell
 {
+    public static bool IsAdmin { get; set; }
+    private AppShellViewModel vm;
     public AppShell()
 	{
 		InitializeComponent();
+        this.BindingContext = this;
         Routing.RegisterRoute("landing", typeof(MainPage));
         Routing.RegisterRoute("dashboard", typeof(DashBoardPage));
         Routing.RegisterRoute("login", typeof(LoginPage));
 		Routing.RegisterRoute("registration", typeof(RegistrationPage));
         Routing.RegisterRoute("user", typeof(UserProfilePage));
+    }
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+        vm = this.Handler.MauiContext.Services.GetService<AppShellViewModel>();
+        this.BindingContext = vm;
     }
 
     private void Button_Clicked(object sender, EventArgs e)
