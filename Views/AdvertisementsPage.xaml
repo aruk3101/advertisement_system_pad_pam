@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.AdvertisementsPage"
+             Title="AdvertisementsPage"
+             Shell.FlyoutBehavior="Flyout"
+             xmlns:viewmodels ="clr-namespace:Projekt.ViewModels"
+             xmlns:entities="clr-namespace:Projekt.Models.Entities"
+             xmlns:usercontrols="clr-namespace:Projekt.Views.UserControls"
+             x:DataType="viewmodels:AdvertisementsViewModel">
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <Label Text="Ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+            <ListView ItemsSource="{Binding Advertisements}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:Advertisement">
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem 
+                                          IconImageSource="edit_icon.png"
+                                          Clicked="MenuItem_Clicked_1"
+                                          CommandParameter="{Binding .}">
+                                </MenuItem>
+                                <MenuItem
+                                    IconImageSource="delete_icon.png"
+                                    Clicked="MenuItem_Clicked_2"
+                                    CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout>
+                                <Label Text="{Binding CompanyName}"/>
+                                <Label Text="{Binding Position}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+        <usercontrols:FloatingAddButton Clicked="FloatingAddButton_Clicked_1"/>
+    </AbsoluteLayout>
+
+</ContentPage>

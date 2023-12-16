@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.AddEditAdvertisementPage"
+             Title="AddEditAdvertisementPage"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:AddEditAdvertisementViewModel"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls">
+    <ScrollView>
+        <VerticalStackLayout>
+            <userControls:Input Placeholder="Nazwa firmy"
+                IconSource="person_icon.png"
+                Text="{Binding E.CompanyName, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[CompanyNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:Input Placeholder="Stanowisko"
+                IconSource="person_icon.png"
+                Text="{Binding E.Position, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[PositionEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:Input Placeholder="Poziom stanowiska"
+                IconSource="person_icon.png"
+                Text="{Binding E.PositionLevel, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[PositionLevelEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:Input Placeholder="Początek przedziału wynagrodzenia"
+                IconSource="person_icon.png"
+                Text="{Binding E.SalaryFrom, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[SalaryFromEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:Input Placeholder="Koniec przedziału wynagrodzenia"
+                IconSource="person_icon.png"
+                Text="{Binding E.SalaryTo, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[SalaryToEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:Input Placeholder="Dni pracy"
+                IconSource="person_icon.png"
+                Text="{Binding E.WorkingDays, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[WorkingDaysEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:Input Placeholder="Godziny pracy"
+                IconSource="person_icon.png"
+                Text="{Binding E.WorkingHours, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[WorkingHoursEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <Label Text="Data końca ogłoszenia"/>
+            <userControls:DateInput
+                IconSource="person_icon.png"
+                Date="{Binding E.ExpirationDate, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[ExpirationDateEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:EditorInput Placeholder="Dodatki pracownicze"
+                IconSource="person_icon.png"
+                Text="{Binding E.Opportunities, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[OpportunitiesEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:EditorInput Placeholder="Wymagania"
+                IconSource="person_icon.png"
+                Text="{Binding E.Requirements, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[RequirementsEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <userControls:EditorInput Placeholder="Obowiązki"
+                IconSource="person_icon.png"
+                Text="{Binding E.Responsibilities, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[ResponsibilitiesEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
+            <Picker
+                 Title="Kategoria"
+                 TitleColor="Black"
+                 TextColor="Black"
+                 HorizontalOptions="FillAndExpand"
+                 ItemsSource="{Binding Categories}"
+                 SelectedItem="{Binding E.Category, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                 ItemDisplayBinding="{Binding Name}"/>
+            <Picker
+                 Title="Typ kontraktu"
+                 TitleColor="Black"
+                 TextColor="Black"
+                 HorizontalOptions="FillAndExpand"
+                 ItemsSource="{Binding ContractTypes}"
+                 SelectedItem="{Binding E.ContractType, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                 ItemDisplayBinding="{Binding .}"/>
+            <Picker
+                Title="Typ czasu pracy"
+                TitleColor="Black"
+                TextColor="Black"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding WorkingTimeTypes}"
+                SelectedItem="{Binding E.WorkingTimeType, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ItemDisplayBinding="{Binding .}"/>
+            <Picker
+                Title="Typ pracy"
+                TitleColor="Black"
+                TextColor="Black"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding JobTypes}"
+                SelectedItem="{Binding E.JobType, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+                ItemDisplayBinding="{Binding .}"/>
+            <Button Text="Dodaj" Command="{Binding SubmitCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
