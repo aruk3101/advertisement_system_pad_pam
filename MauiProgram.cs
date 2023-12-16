@@ -30,6 +30,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<CoursesRepository>();
         builder.Services.AddSingleton<LanguageRepository>();
         builder.Services.AddSingleton<LinkRepository>();
+        builder.Services.AddSingleton<CategoryRepository>();
         builder.Services.AddSingleton<AuthUtilities>();
 
         builder.Services.AddSingleton<AppShellViewModel>();
