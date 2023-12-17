@@ -7,14 +7,11 @@
              x:DataType="viewmodels:AppliedAdvertisementsViewModel"
              xmlns:entites="clr-namespace:Projekt.Models.Entities"
              Shell.FlyoutBehavior="Flyout">
-    <VerticalStackLayout>
-        <RefreshView AbsoluteLayout.LayoutFlags="All"
-                     AbsoluteLayout.LayoutBounds="0,0,1,1"
-                     HorizontalOptions="FillAndExpand"
+    <RefreshView HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand"
                      Command="{Binding UpdateAdvertisementsCommand}"
                      IsRefreshing="{Binding IsRefreshing}">
-            <ScrollView>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <VerticalStackLayout>
                     <Label Text="Zaaplikowane ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
                     <ListView ItemsSource="{Binding Advertisements}">
@@ -37,5 +34,4 @@
                 </VerticalStackLayout>
             </ScrollView>
         </RefreshView>
-    </VerticalStackLayout>
 </ContentPage>
