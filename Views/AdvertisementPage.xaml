@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.AdvertisementPage"
+             Title="AdvertisementPage"
+             xmlns:viewmodels ="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:AdvertisementViewModel"
+             Background="{StaticResource Primary20}">
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="Responsive">
+            <VisualState Name="ExtraSmall">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource ExtraSmall}" />
+                    <OrientationStateTrigger Orientation="Portrait" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="contentStack" Property="VerticalStackLayout.MaximumWidthRequest" Value="99999999"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="Medium">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource Medium}" />
+                    <OrientationStateTrigger Orientation="Landscape" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="contentStack" Property="VerticalStackLayout.MaximumWidthRequest" Value="600"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState Name="Large">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="{StaticResource Large}" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter TargetName="contentStack" Property="VerticalStackLayout.MaximumWidthRequest" Value="800"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style x:Key="contentGroup" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 10,10,10,10"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Margin" Value="20"/>
+        </Style>
+        <Style x:Key="contentGroupStack" TargetType="VerticalStackLayout">
+            <Setter Property="Padding" Value="30"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ScrollView x:Name="mainStack"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand">
+        <VerticalStackLayout x:Name="contentStack"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <AbsoluteLayout HeightRequest="150">
+                        <BoxView AbsoluteLayout.LayoutFlags="All"
+                                 AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                 Color="Black"/>
+                        <Border AbsoluteLayout.LayoutFlags="PositionProportional"
+                                AbsoluteLayout.LayoutBounds="1,1,100,100"
+                                TranslationY="50"
+                                TranslationX="-50"
+                                StrokeShape="RoundRectangle 50,50,50,50"
+                                StrokeThickness="5"
+                                Stroke="{StaticResource Primary}"
+                                BackgroundColor="{StaticResource Primary30}">
+                        </Border>
+                    </AbsoluteLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="{Binding Advertisement.CompanyName}"
+                               FontSize="32"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Advertisement.Position}"
+                               FontSize="16"/>
+                        <Label TextColor="{StaticResource Gray500}" FontSize="14">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="{Binding Advertisement.SalaryFrom, StringFormat='{}{0}PLN'}"/>
+                                        <Span Text=" - "/>
+                                        <Span Text="{Binding Advertisement.SalaryTo, StringFormat='{}{0}PLN'}"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+               
+            </Border>
+
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="{Binding Advertisement.Position}"
+                               FontSize="20"/>
+                        <Label Text="{Binding Advertisement.PositionLevel}"
+                               TextColor="{StaticResource Gray500}"
+                               FontSize="12"/>
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Label Text="↪"/>
+                                <Label Grid.Column="1" Text="{Binding Advertisement.ContractType}"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Label Text="↪"/>
+                                <Label Grid.Column="1" Text="{Binding Advertisement.WorkingTimeType}"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Label Text="↪"/>
+                                <Label Grid.Column="1" Text="{Binding Advertisement.JobType}"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="Przedział wynagrodzenia"
+                               FontSize="18"/>
+                        <Label FontSize="16" Margin="0,0,0,10">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="{Binding Advertisement.SalaryFrom, StringFormat='{}{0}PLN'}" FontAttributes="Bold"/>
+                                        <Span Text=" - " FontAttributes="Bold"/>
+                                        <Span Text="{Binding Advertisement.SalaryTo, StringFormat='{}{0}PLN'}" FontAttributes="Bold"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label Text="{Binding Advertisement.WorkingDays, StringFormat='Dni pracy : {0}'}"></Label>
+                        <Label Text="{Binding Advertisement.WorkingHours, StringFormat='Godziny pracy : {0}'}"></Label>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="Benefity, dodatki" FontSize="18" FontAttributes="Bold"/>
+                        <Label Text="{Binding Advertisement.Opportunities}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="Wymagania" FontSize="18" FontAttributes="Bold"/>
+                        <Label Text="{Binding Advertisement.Requirements}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="Obowiązki" FontSize="18" FontAttributes="Bold"/>
+                        <Label Text="{Binding Advertisement.Responsibilities}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource contentGroup}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout Style="{StaticResource contentGroupStack}">
+                        <Label Text="{Binding Advertisement.ExpirationDate, StringFormat='Oferta wygasa: {0}'}"/>
+                    </VerticalStackLayout>
+                    <Button Text="Aplikuj"
+                            BackgroundColor="{StaticResource Primary40}"
+                            TextColor="White"
+                            FontSize="16"
+                            Command="{Binding ApplyCommand}"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

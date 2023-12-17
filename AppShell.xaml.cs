@@ -20,6 +20,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("user", typeof(UserProfilePage));
         Routing.RegisterRoute("advertisements", typeof(AdvertisementsPage));
         Routing.RegisterRoute("addEditAdvertisement", typeof(AddEditAdvertisementPage));
+        Routing.RegisterRoute("advertisement", typeof(AdvertisementPage));
     }
     protected override void OnHandlerChanged()
     {

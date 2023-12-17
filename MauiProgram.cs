@@ -78,6 +78,9 @@ public static class MauiProgram
         builder.Services.AddTransient<AddEditAdvertisementPage>();
         builder.Services.AddSingleton<AddEditAdvertisementViewModel>();
 
+        builder.Services.AddTransient<AdvertisementPage>();
+        builder.Services.AddTransient<AdvertisementViewModel>();
+
 
         return builder.Build();
 	}

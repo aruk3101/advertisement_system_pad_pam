@@ -41,4 +41,9 @@ public partial class AdvertisementsPage : ContentPage
     {
         await vm.Add();
     }
+
+    private async void MenuItem_Clicked_3(object sender, EventArgs e)
+    {
+        await vm.Info((sender as MenuItem).CommandParameter as Advertisement);
+    }
 }

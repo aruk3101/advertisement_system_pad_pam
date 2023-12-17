@@ -103,6 +103,14 @@ namespace Projekt.ViewModels
             }
         }
 
-
+        [RelayCommand]
+        public async Task Info(Advertisement advertisement)
+        {
+            Dictionary<string, object> args = new Dictionary<string, object>()
+            {
+                {"advertisement",advertisement}
+            };
+            await AppShell.Current.GoToAsync("advertisement", true, args);
+        }
     }
 }

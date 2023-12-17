@@ -32,14 +32,17 @@
                                 <ViewCell>
                                     <ViewCell.ContextActions>
                                         <MenuItem 
-                            IconImageSource="edit_icon.png"
-                            Clicked="MenuItem_Clicked_1"
-                            CommandParameter="{Binding .}">
+                                            IconImageSource="edit_icon.png"
+                                            Clicked="MenuItem_Clicked_1"
+                                            CommandParameter="{Binding .}">
                                         </MenuItem>
                                         <MenuItem
-                      IconImageSource="delete_icon.png"
-                      Clicked="MenuItem_Clicked_2"
-                      CommandParameter="{Binding .}"/>
+                                          IconImageSource="delete_icon.png"
+                                          Clicked="MenuItem_Clicked_2"
+                                          CommandParameter="{Binding .}"/>
+                                        <MenuItem IconImageSource="info_icon.png"
+                                                  Clicked="MenuItem_Clicked_3"
+                                                  CommandParameter="{Binding .}"/>
                                     </ViewCell.ContextActions>
                                     <StackLayout>
                                         <Label Text="{Binding CompanyName}"/>
