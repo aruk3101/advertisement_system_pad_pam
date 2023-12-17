@@ -123,25 +123,25 @@
                     <Label Text="Zarejestruj się" FontSize="Header" TextTransform="Uppercase"/>
                     <userControls:Input Grid.Row="1"
                                         x:Name="EmailEntry"
-                                        Placeholder="Custom Placeholder"
+                                        Placeholder="Email"
                                         IconSource="person_icon.png"
                                         Text="{Binding Email, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
                                         ErrorMessage="{Binding Errors[EmailEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
                     <userControls:Input Grid.Row="2"
                                         x:Name="PasswordHashEntry"
-                                        Placeholder="Custom Placeholder"
+                                        Placeholder="Hasło"
                                         IconSource="person_icon.png"
                                         Text="{Binding PasswordHash, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
                                         ErrorMessage="{Binding Errors[PasswordHashEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
                     <userControls:Input Grid.Row="3"
                                         x:Name="FirstNameEntry"
-                                        Placeholder="Custom Placeholder"
+                                        Placeholder="Imie"
                                         IconSource="person_icon.png"
                                         Text="{Binding FirstName, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
                                         ErrorMessage="{Binding Errors[FirstNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
                     <userControls:Input Grid.Row="4"
                                         x:Name="LastNameEntry"
-                                        Placeholder="Custom Placeholder"
+                                        Placeholder="Nazwisko"
                                         IconSource="person_icon.png"
                                         Text="{Binding LastName, Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}, Mode=TwoWay}"
                                         ErrorMessage="{Binding Errors[LastNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:RegistrationViewModel}}}"/>
