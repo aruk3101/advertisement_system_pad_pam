@@ -15,6 +15,13 @@ namespace Projekt.Models.Repositories
 
         }
 
+        public async Task<List<Advertisement>> GetAdvertisements(IEnumerable<Applied> applied)
+        {
+            var appliedAdsIds = applied.Select(a => a.AdvertisementId);
+            var result = await base.GetFileteredAsync<Advertisement>(a=>appliedAdsIds.Contains(a.Id));
+            return result.ToList();
+        }
+
         public async Task<List<Advertisement>> GetAdvertisements(int page, int pageSize)
         {
             var result = await base.GetFileteredAsync<Advertisement>(_ => true, page, pageSize);

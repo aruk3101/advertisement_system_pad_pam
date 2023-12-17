@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Projekt.Models.Common.Utilities;
 using Projekt.Models.Entities;
+using Projekt.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +15,22 @@ namespace Projekt.ViewModels
     {
         [ObservableProperty]
         Advertisement advertisement;
-        public AdvertisementViewModel()
+
+        private AppliedRepository appliedRepository;
+        public AdvertisementViewModel(AppliedRepository appliedRepository)  
         {
-            
+            this.appliedRepository = appliedRepository;
         }
 
         [RelayCommand]
-        private async void Apply()
+        private async Task Apply()
         {
-
+            await appliedRepository.AddApplied(new Applied()
+            {
+                UserId = AuthUtilities.LoggedInUserId,
+                AdvertisementId = Advertisement.Id
+            });
+            await ShellUtilities.DisplayAlert("Sukces", "Zaaplikowano do ogłoszenia!");
         }
     }
 }

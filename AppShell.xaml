@@ -39,6 +39,14 @@
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="Zaaplikowane"
+            Icon="home_icon.png">
+        <Tab>
+            <ShellContent
+        ContentTemplate="{DataTemplate views:AppliedAdvertisementsPage}"/>
+        </Tab>
+    </FlyoutItem>
+
     <Shell.FlyoutFooter>
         <StackLayout>
             <Button Text="Wyloguj się" Clicked="Button_Clicked_2"/>

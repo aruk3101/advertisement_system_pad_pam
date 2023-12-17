@@ -32,6 +32,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<LinkRepository>();
         builder.Services.AddSingleton<CategoryRepository>();
         builder.Services.AddSingleton<AdvertisementsRepository>();
+        builder.Services.AddSingleton<AppliedRepository>();
         builder.Services.AddSingleton<AuthUtilities>();
 
         builder.Services.AddSingleton<AppShellViewModel>();
@@ -80,6 +81,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<AdvertisementPage>();
         builder.Services.AddTransient<AdvertisementViewModel>();
+
+        builder.Services.AddTransient<AppliedAdvertisementsPage>();
+        builder.Services.AddTransient<AppliedAdvertisementsViewModel>();
 
 
         return builder.Build();
