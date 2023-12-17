@@ -8,7 +8,8 @@
              xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
              x:DataType ="viewmodels:MainViewModel"
              x:Name="currentPage" BackgroundImageSource="bg.jpg"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <x:Double x:Key="ExtraSmall">0</x:Double>
         <x:Double x:Key="Small">576</x:Double>

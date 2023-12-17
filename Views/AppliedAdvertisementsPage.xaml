@@ -16,7 +16,7 @@
                      IsRefreshing="{Binding IsRefreshing}">
             <ScrollView>
                 <VerticalStackLayout>
-                    <Label Text="Zaaplikowane ogłoszenias" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Zaaplikowane ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
                     <ListView ItemsSource="{Binding Advertisements}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="entites:Advertisement">
