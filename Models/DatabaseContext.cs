@@ -59,6 +59,23 @@ namespace Projekt.Models
             return await table.Where(predicate).ToListAsync();
         }
 
+        protected async Task<IEnumerable<TTable>> GetFileteredAsync<TTable>(Expression<Func<TTable, bool>> predicate, int page, int pageSize) where TTable : class, new()
+        {
+            page--; //zeby pierwsza strona była 0, a nie 1
+            var table = await GetTableAsync<TTable>();
+            return await table
+                .Where(predicate)
+                .Skip(page * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        protected async Task<int> GetFileteredCountAsync<TTable>(Expression<Func<TTable, bool>> predicate) where TTable : class, new()
+        {
+            var table = await GetTableAsync<TTable>();
+            return await table.Where(predicate).CountAsync();
+        }
+
         protected async Task<TTable> GetItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
         {
             return await Execute<TTable, TTable>(async () => await Database.GetAsync<TTable>(primaryKey));

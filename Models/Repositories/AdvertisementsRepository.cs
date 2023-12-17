@@ -15,10 +15,15 @@ namespace Projekt.Models.Repositories
 
         }
 
-        public async Task<List<Advertisement>> GetAdvertisements()
+        public async Task<List<Advertisement>> GetAdvertisements(int page, int pageSize)
         {
-            var result = await base.GetAllAsync<Advertisement>();
+            var result = await base.GetFileteredAsync<Advertisement>(_ => true, page, pageSize);
             return result.ToList();
+        }
+
+        public async Task<int> GetAdvertisementsCount()
+        {
+            return await base.GetFileteredCountAsync<Advertisement>(_ => true);
         }
 
         public async Task<bool> AddAdvertisement(Advertisement advertisement)

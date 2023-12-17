@@ -21,6 +21,10 @@ namespace Projekt.Models.Repositories
         {
             return await base.AddItemAsync<User>(user);
         }
+        public async Task<bool> DeleteUserAsync(User user)
+        {
+            return await base.DeleteItemAsync<User>(user);
+        }
         public async Task<bool> IsEmailUnique(string email)
         {
             var result = await base.GetFileteredAsync<User>((user) => user.Email.ToLower() == email.ToLower());

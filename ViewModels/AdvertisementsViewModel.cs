@@ -18,6 +18,16 @@ namespace Projekt.ViewModels
         List<Advertisement> advertisements;
         [ObservableProperty]
         Binding isAdminBinding;
+        [ObservableProperty]
+        int page = 1;
+        [ObservableProperty]
+        int maxPage;
+        [ObservableProperty]
+        bool isRefreshing = false;
+
+        int advertisementsCount = 0;
+
+        const int pageSize = 10;
 
         private AdvertisementsRepository advertisementsRepository;
         private AddEditAdvertisementViewModel addEditAdvertisementViewModel;
@@ -30,7 +40,8 @@ namespace Projekt.ViewModels
             this.addEditAdvertisementViewModel = addEditAdvertisementViewModel;
         }
 
-        private bool IsAuthorized() {
+        private bool IsAuthorized()
+        {
             return AuthUtilities.LoggedInUserRole == Role.ADMIN;
         }
 
@@ -60,9 +71,36 @@ namespace Projekt.ViewModels
             await UpdateAdvertisements();
         }
 
+        [RelayCommand]
         public async Task UpdateAdvertisements()
         {
-            Advertisements = await advertisementsRepository.GetAdvertisements();
+            IsRefreshing = true;
+            Advertisements = await advertisementsRepository.GetAdvertisements(Page, pageSize);
+            advertisementsCount = await advertisementsRepository.GetAdvertisementsCount();
+            MaxPage = Convert.ToInt32(Math.Ceiling(advertisementsCount / (double)pageSize));
+            if (MaxPage == 0) MaxPage = 1;
+            IsRefreshing = false;
+        }
+
+        [RelayCommand]
+        public async Task NextPage()
+        {
+            if (Page + 1 <= MaxPage)
+            {
+                Page++;
+                await UpdateAdvertisements();
+            }
+
+        }
+
+        [RelayCommand]
+        public async Task PreviousPage()
+        {
+            if (Page > 1)
+            {
+                Page--;
+                await UpdateAdvertisements();
+            }
         }
 
 

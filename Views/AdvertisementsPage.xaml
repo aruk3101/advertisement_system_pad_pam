@@ -7,34 +7,52 @@
              xmlns:viewmodels ="clr-namespace:Projekt.ViewModels"
              xmlns:entities="clr-namespace:Projekt.Models.Entities"
              xmlns:usercontrols="clr-namespace:Projekt.Views.UserControls"
-             x:DataType="viewmodels:AdvertisementsViewModel">
+             x:DataType="viewmodels:AdvertisementsViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <VerticalStackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <Label Text="Ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
-            <ListView ItemsSource="{Binding Advertisements}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="entities:Advertisement">
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem 
-                                          IconImageSource="edit_icon.png"
-                                          Clicked="MenuItem_Clicked_1"
-                                          CommandParameter="{Binding .}">
-                                </MenuItem>
-                                <MenuItem
-                                    IconImageSource="delete_icon.png"
-                                    Clicked="MenuItem_Clicked_2"
-                                    CommandParameter="{Binding .}"/>
-                            </ViewCell.ContextActions>
-                            <StackLayout>
-                                <Label Text="{Binding CompanyName}"/>
-                                <Label Text="{Binding Position}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
+        <AbsoluteLayout.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Left" Command="{Binding NextPageCommand}"/>
+            <SwipeGestureRecognizer Direction="Right" Command="{Binding PreviousPageCommand}"/>
+        </AbsoluteLayout.GestureRecognizers>
+        <RefreshView AbsoluteLayout.LayoutFlags="All"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Command="{Binding UpdateAdvertisementsCommand}"
+                             IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Label Text="Ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{Binding Page, StringFormat='{Strona : {0}}'}"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="FillAndExpand"/>
+                    <ListView ItemsSource="{Binding Advertisements}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="entities:Advertisement">
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem 
+                            IconImageSource="edit_icon.png"
+                            Clicked="MenuItem_Clicked_1"
+                            CommandParameter="{Binding .}">
+                                        </MenuItem>
+                                        <MenuItem
+                      IconImageSource="delete_icon.png"
+                      Clicked="MenuItem_Clicked_2"
+                      CommandParameter="{Binding .}"/>
+                                    </ViewCell.ContextActions>
+                                    <StackLayout>
+                                        <Label Text="{Binding CompanyName}"/>
+                                        <Label Text="{Binding Position}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+       
         <usercontrols:FloatingAddButton Clicked="FloatingAddButton_Clicked_1"/>
     </AbsoluteLayout>
 
