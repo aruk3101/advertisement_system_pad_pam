@@ -9,6 +9,11 @@ namespace Projekt.Models
         private DatabaseProperties databaseProperties;
 
         private SQLiteAsyncConnection _connection;
+        // AsyncTableQuery nie obsługuje niektórych metod, np. join czy groupjoin,
+        // dlatego zrobiłem 2 połączenie, tym razem synchroniczne
+        // nie chce zmieniać całego projektu przez 1 problem,
+        // dlatego będe tam gdzie sie da korzystać z asynchronicznego połączenia, a czasami z synchronicznego
+        private SQLiteConnection _synchronousConnectionn;
         private SQLiteAsyncConnection Database
         {
             get
@@ -16,8 +21,20 @@ namespace Projekt.Models
                 if (_connection == null)
                 {
                     _connection = new SQLiteAsyncConnection(databaseProperties.DbPath, databaseProperties.DbConnectionFlags);
+
                 }
                 return _connection;
+            }
+        }
+        private SQLiteConnection SynchronousDatabase
+        {
+            get
+            {
+                if (_synchronousConnectionn == null)
+                {
+                    _synchronousConnectionn = new SQLiteConnection(databaseProperties.DbPath, databaseProperties.DbConnectionFlags);
+                }
+                return _synchronousConnectionn;
             }
         }
 
@@ -68,6 +85,27 @@ namespace Projekt.Models
                 .Skip(page * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+        }
+
+        protected async Task<TableQuery<TTable>> GetTableQuery<TTable>()
+            where TTable : class, new()
+        {
+            return await Task.Run(() =>
+            {
+                return SynchronousDatabase.Table<TTable>();
+            });
+        }
+
+        protected async Task<TableQuery<TTable>> GetFileteredTableQueryAsync<TTable>(Expression<Func<TTable, bool>> predicate,
+            int page,
+            int pageSize)
+            where TTable : class, new()
+        {
+            var table = await GetTableQuery<TTable>();
+            page--;
+            return table.Where(predicate)
+            .Skip(page * pageSize)
+            .Take(pageSize);
         }
 
         protected async Task<int> GetFileteredCountAsync<TTable>(Expression<Func<TTable, bool>> predicate) where TTable : class, new()

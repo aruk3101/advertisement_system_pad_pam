@@ -3,6 +3,7 @@ using Projekt.Models.Entities;
 using Projekt.Models.Repositories;
 using Projekt.ViewModels;
 using Projekt.Views.ContentViews;
+using SQLite;
 using System.Runtime.CompilerServices;
 
 namespace Projekt;

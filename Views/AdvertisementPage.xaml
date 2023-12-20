@@ -5,6 +5,7 @@
              Title="AdvertisementPage"
              xmlns:viewmodels ="clr-namespace:Projekt.ViewModels"
              x:DataType="viewmodels:AdvertisementViewModel"
+             xmlns:entities="clr-namespace:Projekt.Models.Entities"
              Background="{StaticResource Primary20}">
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="Responsive">
@@ -149,7 +150,23 @@
                 <VerticalStackLayout>
                     <VerticalStackLayout Style="{StaticResource contentGroupStack}">
                         <Label Text="Benefity, dodatki" FontSize="18" FontAttributes="Bold"/>
-                        <Label Text="{Binding Advertisement.Opportunities}"/>
+                        <CollectionView ItemsSource="{Binding Advertisement.Opportunities}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="entities:Opportunity">
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Image Source="benefit_icon.png"
+                                               WidthRequest="30"
+                                               HeightRequest="30"
+                                               VerticalOptions="Start"/>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Name}"
+                                               VerticalTextAlignment="Center"
+                                               VerticalOptions="FillAndExpand"
+                                               LineBreakMode="WordWrap"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
@@ -158,7 +175,23 @@
                 <VerticalStackLayout>
                     <VerticalStackLayout Style="{StaticResource contentGroupStack}">
                         <Label Text="Wymagania" FontSize="18" FontAttributes="Bold"/>
-                        <Label Text="{Binding Advertisement.Requirements}"/>
+                        <CollectionView ItemsSource="{Binding Advertisement.Requirements}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="entities:Requirement">
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Image Source="task_icon.png"
+                                           WidthRequest="30"
+                                           HeightRequest="30"
+                                           VerticalOptions="Start"/>
+                                        <Label Grid.Column="1"
+                                           Text="{Binding Name}"
+                                           VerticalTextAlignment="Center"
+                                           VerticalOptions="FillAndExpand"
+                                           LineBreakMode="WordWrap"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
@@ -167,7 +200,23 @@
                 <VerticalStackLayout>
                     <VerticalStackLayout Style="{StaticResource contentGroupStack}">
                         <Label Text="Obowiązki" FontSize="18" FontAttributes="Bold"/>
-                        <Label Text="{Binding Advertisement.Responsibilities}"/>
+                        <CollectionView ItemsSource="{Binding Advertisement.Responsibilities}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="entities:Responsibility">
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Image Source="task_icon.png"
+                                                WidthRequest="30"
+                                                HeightRequest="30"
+                                                VerticalOptions="Start"/>
+                                        <Label Grid.Column="1"
+                                                Text="{Binding Name}"
+                                                VerticalTextAlignment="Center"
+                                                VerticalOptions="FillAndExpand"
+                                                LineBreakMode="WordWrap"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
             </Border>
