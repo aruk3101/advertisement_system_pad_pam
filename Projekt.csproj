@@ -50,9 +50,11 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\bg.jpg" />
 	  <None Remove="Resources\Images\icons\add_icon.png" />
+	  <None Remove="Resources\Images\icons\benefit_icon.png" />
 	  <None Remove="Resources\Images\icons\delete_icon.png" />
 	  <None Remove="Resources\Images\icons\edit_icon.png" />
 	  <None Remove="Resources\Images\icons\person_icon.png" />
+	  <None Remove="Resources\Images\icons\task_icon.png" />
 	  <None Remove="Resources\Images\landing_img.png" />
 	  <None Remove="Resources\Images\outline_info_white_24dp.png" />
 	  <None Remove="Resources\Images\person_FILL0_wght400_GRAD0_opsz24.png" />
@@ -80,6 +82,18 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AppliedAdvertisementsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\AdvertisementDataContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\AdvertisementOpportunitiesContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\AdvertisementRequirementsContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\AdvertisementResponsibilitiesContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\UserCoursesContentView.xaml">
@@ -121,6 +135,15 @@
 	  <MauiXaml Update="Views\PopUps\AddEditLinkPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditOpportunityPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditRequirementPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddEditResponsibilityPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\PopUps\AddEditSkillPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -143,11 +166,16 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\icons\add_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\benefit_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\delete_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\edit_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\home_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\info_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\person_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\icons\task_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

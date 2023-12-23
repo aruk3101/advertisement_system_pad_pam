@@ -1,5 +1,6 @@
 ﻿using Projekt.Models.Entities;
 using Projekt.Properties;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,55 @@ namespace Projekt.Models.Repositories
         public async Task<List<Advertisement>> GetAdvertisements(IEnumerable<Applied> applied)
         {
             var appliedAdsIds = applied.Select(a => a.AdvertisementId);
-            var result = await base.GetFileteredAsync<Advertisement>(a=>appliedAdsIds.Contains(a.Id));
+            var result = await base.GetFileteredAsync<Advertisement>(a => appliedAdsIds.Contains(a.Id));
             return result.ToList();
         }
 
         public async Task<List<Advertisement>> GetAdvertisements(int page, int pageSize)
         {
-            var result = await base.GetFileteredAsync<Advertisement>(_ => true, page, pageSize);
-            return result.ToList();
+            var tableQuery = await base.GetFileteredTableQueryAsync<Advertisement>(_ => true, page, pageSize);
+            return await JoinTable(tableQuery);
+        }
+
+        private async Task<List<Advertisement>> JoinTable(TableQuery<Advertisement> table)
+        {
+            return await Task.Run(async () =>
+            {
+                return table
+                .Join(await base.GetTableQuery<Category>(),
+                    a => a.CategoryId,
+                    c => c.Id,
+                    (a, c) =>
+                    {
+                        a.Category = c;
+                        return a;
+                    })
+                .GroupJoin(await base.GetTableQuery<Requirement>(),
+                    a => a.Id,
+                    r => r.AdvertisementId,
+                    (a, r) =>
+                    {
+                        a.Requirements = r.ToList();
+                        return a;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Responsibility>(),
+                    a => a.Id,
+                    r => r.AdvertisementId,
+                    (a, r) =>
+                    {
+                        a.Responsibilities = r.ToList();
+                        return a;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Opportunity>(),
+                    a => a.Id,
+                    o => o.AdvertisementId,
+                    (a, o) =>
+                    {
+                        a.Opportunities = o.ToList();
+                        return a;
+                    })
+                .ToList();
+            });
         }
 
         public async Task<int> GetAdvertisementsCount()

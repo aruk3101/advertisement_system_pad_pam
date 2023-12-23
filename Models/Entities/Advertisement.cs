@@ -17,7 +17,7 @@ namespace Projekt.Models.Entities
         public int CategoryId { get; set; }
         public string CompanyName { get; set; }
         public string Position { get; set; }
-        public string PositionLevel { get; set; }
+        public PositionLevel PositionLevel { get; set; }
         public ContractType ContractType { get; set; }
         public WorkingTimeType WorkingTimeType { get; set; }
         public JobType JobType { get; set; }
@@ -26,9 +26,12 @@ namespace Projekt.Models.Entities
         public string WorkingDays { get; set; }
         public string WorkingHours { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public string Opportunities { get; set; }
-        public string Requirements { get; set; }
-        public string Responsibilities { get; set; }
+        [Ignore]
+        public List<Opportunity> Opportunities { get; set; } = new List<Opportunity>();
+        [Ignore]
+        public List<Requirement> Requirements { get; set; } = new List<Requirement>();
+        [Ignore]
+        public List<Responsibility> Responsibilities { get; set; } = new List<Responsibility>();
 
         [Ignore]
         public Category Category { get; set; }

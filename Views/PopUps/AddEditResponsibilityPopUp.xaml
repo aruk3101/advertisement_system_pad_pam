@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.PopUps.AddEditResponsibilityPopUp"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:enumerated ="clr-namespace:Projekt.Models.Common.Enumerated"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:ResponsibilitesViewModel"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls">
+    <ScrollView Padding="30"
+              MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}">
+    <VerticalStackLayout>
+        <userControls:Input x:Name="NameEntry"
+           Placeholder="Nazwa"
+           IconSource="person_icon.png"
+           Text="{Binding E.Name, Source={RelativeSource AncestorType={x:Type viewmodels:ResponsibilitesViewModel}}, Mode=TwoWay}"
+           ErrorMessage="{Binding Errors[NameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:ResponsibilitesViewModel}}}"/>
+        <Button HorizontalOptions="Center" x:Name="actionButton" Text="Dodaj" Clicked="actionButton_Clicked_1"/>
+        <Button HorizontalOptions="Center" Text="Zamknij" Clicked="Button_Clicked"/>
+    </VerticalStackLayout>
+    </ScrollView>
+</mct:Popup>

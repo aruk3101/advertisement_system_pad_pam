@@ -33,6 +33,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<CategoryRepository>();
         builder.Services.AddSingleton<AdvertisementsRepository>();
         builder.Services.AddSingleton<AppliedRepository>();
+        builder.Services.AddSingleton<ResponsiblityRepository>();
+        builder.Services.AddSingleton<RequirementsRepository>();
+        builder.Services.AddSingleton<OpportunityRepository>();
         builder.Services.AddSingleton<AuthUtilities>();
 
         builder.Services.AddSingleton<AppShellViewModel>();
@@ -84,6 +87,16 @@ public static class MauiProgram
 
         builder.Services.AddTransient<AppliedAdvertisementsPage>();
         builder.Services.AddTransient<AppliedAdvertisementsViewModel>();
+
+        builder.Services.AddTransient<AdvertisementDataContentView>();
+        builder.Services.AddTransient<AdvertisementResponsibilitiesContentView>();
+        builder.Services.AddTransient<AdvertisementRequirementsContentView>();
+        builder.Services.AddTransient<AdvertisementOpportunitiesContentView>();
+
+        builder.Services.AddSingleton<ResponsibilitesViewModel>();
+        builder.Services.AddSingleton<RequirementsViewModel>();
+        builder.Services.AddSingleton<OpportunitiesViewModel>();
+        builder.Services.AddSingleton<RequirementsViewModel>();
 
 
         return builder.Build();

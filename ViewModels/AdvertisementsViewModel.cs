@@ -50,7 +50,10 @@ namespace Projekt.ViewModels
         {
             if (!IsAuthorized()) return;
             addEditAdvertisementViewModel.E = new Advertisement();
-            await AppShell.Current.GoToAsync("addEditAdvertisement");
+            await AppShell.Current.GoToAsync("addEditAdvertisement", new Dictionary<string, object>()
+            {
+                {"advertisement", null}
+            });
         }
 
         [RelayCommand]
@@ -58,9 +61,11 @@ namespace Projekt.ViewModels
         {
             if (!IsAuthorized()) return;
             if (advertisement == null) return;
-            addEditAdvertisementViewModel.E = advertisement;
-            addEditAdvertisementViewModel.SetAdvertisementCategory();
-            await AppShell.Current.GoToAsync("addEditAdvertisement");
+            await addEditAdvertisementViewModel.SetupAdvertisement(advertisement);
+            await AppShell.Current.GoToAsync("addEditAdvertisement", new Dictionary<string, object>()
+            {
+                {"advertisement", advertisement}
+            });
         }
 
         [RelayCommand]

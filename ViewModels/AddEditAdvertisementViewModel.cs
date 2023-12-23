@@ -4,6 +4,7 @@ using Projekt.Models.Common.Enumerated;
 using Projekt.Models.Common.Utilities;
 using Projekt.Models.Entities;
 using Projekt.Models.Repositories;
+using Projekt.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,10 +36,19 @@ namespace Projekt.ViewModels
 
         private AdvertisementsRepository advertisementsRepository;
         private CategoryRepository categoryRepository;
+        private OpportunitiesViewModel opportunitiesViewModel;
+        private ResponsibilitesViewModel responsibilitesViewModel;
+        private RequirementsViewModel requirementsViewModel;
 
         public AddEditAdvertisementViewModel(CategoryRepository categoryRepository,
-            AdvertisementsRepository advertisementsRepository)
+            AdvertisementsRepository advertisementsRepository,
+            OpportunitiesViewModel opportunitiesViewModel,
+            ResponsibilitesViewModel responsibilitesViewModel,
+            RequirementsViewModel requirementsViewModel)
         {
+            this.requirementsViewModel = requirementsViewModel;
+            this.responsibilitesViewModel = responsibilitesViewModel;
+            this.opportunitiesViewModel = opportunitiesViewModel;
             this.advertisementsRepository = advertisementsRepository;
             this.categoryRepository = categoryRepository;
             Task.Run(async () =>
@@ -47,10 +57,15 @@ namespace Projekt.ViewModels
             });
         }
 
-        public void SetAdvertisementCategory()
+        public async Task SetupAdvertisement(Advertisement advertisement)
         {
-            if (E == null) return;
-            E.Category = Categories.Where(c => c.Id == E.CategoryId).First();
+            E = advertisement;
+            opportunitiesViewModel.AdvertisementId = advertisement.Id;
+            await opportunitiesViewModel.UpdateItemsSource();
+            requirementsViewModel.AdvertisementId = advertisement.Id;
+            await requirementsViewModel.UpdateItemsSource();
+            responsibilitesViewModel.AdvertisementId = advertisement.Id;
+            await responsibilitesViewModel.UpdateItemsSource();
         }
 
         [RelayCommand]
@@ -66,12 +81,11 @@ namespace Projekt.ViewModels
                 await AppShell.Current.GoToAsync("..");
                 await ShellUtilities.DisplayAlert("Sukces", "Poprawnie dodano ogłoszenie!");
             }
-            else
+            else if (AddEditAdvertisementPage.SelectedAdvertisement != null)
             {
                 //edytowanie
                 E.CategoryId = E.Category.Id;
                 await advertisementsRepository.UpdateAdvertisement(E);
-                await AppShell.Current.GoToAsync("..");
                 await ShellUtilities.DisplayAlert("Sukces", "Poprawnie edytowano ogłoszenie!");
             }
         }

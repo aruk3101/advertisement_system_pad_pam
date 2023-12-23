@@ -9,7 +9,7 @@
              Shell.FlyoutBehavior="Flyout">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout Background="{StaticResource Primary30}">
-            <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap" JustifyContent="Center">
+            <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap" JustifyContent="Center" x:Name="flexLayout">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <RadioButton Content="{Binding .}"
