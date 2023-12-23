@@ -8,8 +8,8 @@
             <StackLayout BackgroundColor="{StaticResource White}">
                 <StackLayout Orientation="Horizontal">
                     <Image WidthRequest="50"
-                       HeightRequest="50"
-                       Source="{Binding IconSource}"/>
+                           HeightRequest="50"
+                           Source="{Binding IconSource}"/>
                     <BoxView Color="{StaticResource Primary30}"
                          WidthRequest="1"
                          VerticalOptions="FillAndExpand"/>
@@ -19,6 +19,7 @@
                        VerticalOptions="FillAndExpand"
                        VerticalTextAlignment="Center"
                        TextColor="Black"
+                       AutoSize="TextChanges"
                        Text="{Binding Text}"/>
                 </StackLayout>
             </StackLayout>

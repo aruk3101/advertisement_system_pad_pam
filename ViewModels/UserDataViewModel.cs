@@ -32,6 +32,14 @@ namespace Projekt.ViewModels
         string apartmentNumber;
         [ObservableProperty]
         string country;
+        [ObservableProperty]
+        string currentJob;
+        [ObservableProperty]
+        string currentJobDescription;
+        [ObservableProperty]
+        string careerSummary;
+        [ObservableProperty]
+        string profilePictureSource;
 
         private UserRepository userRepository;
         private AuthUtilities authUtilities;
@@ -56,6 +64,9 @@ namespace Projekt.ViewModels
                 { nameof(StreetNumber) + "Entry" , new List<string> {}},
                 { nameof(ApartmentNumber) + "Entry" , new List<string> {}},
                 { nameof(Country) + "Entry" , new List<string> {}},
+                { nameof(CurrentJob) + "Entry" , new List<string> {}},
+                { nameof(CurrentJobDescription) + "Entry" , new List<string> {}},
+                { nameof(CareerSummary) + "Entry" , new List<string> {}},
             };
             Task t = new Task(SetProperties);
             t.Start();
@@ -83,6 +94,10 @@ namespace Projekt.ViewModels
             StreetNumber = loggedInUser.StreetNumber;
             ApartmentNumber = loggedInUser.ApartmentNumber;
             Country = loggedInUser.Country;
+            CurrentJob = loggedInUser.CurrentJob;
+            CurrentJobDescription = loggedInUser.CurrentJobDescription;
+            CareerSummary = loggedInUser.CareerSummary;
+            ProfilePictureSource = loggedInUser.ProfilePictureSource;
         }
 
         [RelayCommand]
@@ -124,6 +139,10 @@ namespace Projekt.ViewModels
                 PostalCode = this.PostalCode,
                 Street = this.Street,
                 StreetNumber = this.StreetNumber,
+                CareerSummary = this.CareerSummary,
+                CurrentJob = this.CurrentJob,
+                CurrentJobDescription = this.CurrentJobDescription,
+                ProfilePictureSource = this.ProfilePictureSource,
             };
         }
 
@@ -159,6 +178,9 @@ namespace Projekt.ViewModels
                         nameof(Street),
                         nameof(StreetNumber),
                         nameof(ApartmentNumber),
+                        nameof(CurrentJob),
+                        nameof(CurrentJobDescription),
+                        nameof(CareerSummary),
 
                     }.Contains(prop.Name)
                 );
@@ -183,7 +205,72 @@ namespace Projekt.ViewModels
             loggedInUser.Country = user.Country;
             loggedInUser.PostalCode = user.PostalCode;
             loggedInUser.PostalName = user.PostalName;
+            loggedInUser.CareerSummary = user.CareerSummary;
+            loggedInUser.CurrentJob = user.CurrentJob;
+            loggedInUser.CurrentJobDescription = user.CurrentJobDescription;
+            loggedInUser.ProfilePictureSource = user.ProfilePictureSource;
             return await userRepository.Update(loggedInUser);
+        }
+
+        [RelayCommand]
+        private async Task ChoosePicture()
+        {
+            try
+            {
+                var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please a pick photo",
+
+                });
+                if (result == null) return;
+
+                if (result.ContentType == "image/png" ||
+                    result.ContentType == "image/jpeg" ||
+                    result.ContentType == "image/jpg")
+                {
+                    await SavePicture(result);
+                    return;
+                }
+                else
+                    await App.Current.MainPage.DisplayAlert("Error Type Image", "Please choose a new image with format png, jpg or jpeg", "Ok");
+
+            }
+            catch (Exception ex)
+            {
+                ShellUtilities.DisplayUnexpectedErrorAlert();
+            }
+        }
+
+        private async Task<string> SavePicture(FileResult fileResult)
+        {
+            try
+            {
+                string extension;
+                switch (fileResult.ContentType)
+                {
+                    case "image/png":
+                        extension = ".png";
+                        break;
+                    case "image/jpeg":
+                        extension = ".jpeg";
+                        break;
+                    case "image/jpg":
+                    default:
+                        extension = ".jpg";
+                        break;
+                }
+                string destination = Path.Combine(FileSystem.AppDataDirectory,
+                        "user_" + AuthUtilities.LoggedInUserId + extension);
+                File.Copy(fileResult.FullPath, destination, true);
+                ProfilePictureSource = null;
+                ProfilePictureSource = destination;
+                return destination;
+            }
+            catch (Exception ex)
+            {
+                ShellUtilities.DisplayDeleteExceptionAlert();
+                return null;
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Projekt.Models.Entities
 {
-    #nullable enable
+#nullable enable
     [Table("users")]
     public class User : ValidatableEntity
     {
@@ -72,6 +72,15 @@ namespace Projekt.Models.Entities
 
         [SQLite.MaxLength(255)]
         public string? ProfilePictureSource { get; set; }
+
+        [SQLite.MaxLength(255)]
+        public string CurrentJob { get; set; }
+
+        [SQLite.MaxLength(1023)]
+        public string CurrentJobDescription { get; set; }
+
+        [SQLite.MaxLength(1023)]
+        public string CareerSummary { get; set; }
 
         public Role Role { get; set; } = Role.USER;
     }
