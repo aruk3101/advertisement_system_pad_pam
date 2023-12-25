@@ -1,9 +1,11 @@
-﻿using Projekt.Models.Entities;
+﻿using Projekt.Models.Common.Enumerated;
+using Projekt.Models.Entities;
 using Projekt.Properties;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,9 +25,26 @@ namespace Projekt.Models.Repositories
             return result.ToList();
         }
 
-        public async Task<List<Advertisement>> GetAdvertisements(int page, int pageSize)
+        public async Task<List<Advertisement>> GetAdvertisements(int page, int pageSize, ViewModels.Filter filter)
         {
-            var tableQuery = await base.GetFileteredTableQueryAsync<Advertisement>(_ => true, page, pageSize);
+            List<Expression<Func<Advertisement, bool>>> list = new List<Expression<Func<Advertisement, bool>>>();
+            list.Add(a => a.Position.ToLower().Contains(filter.Position.ToLower()));
+            if (filter.JobTypes.Count > 0) list.Add(a => filter.JobTypes.Contains(a.JobType));
+            if (filter.ContractTypes.Count > 0) list.Add(a => filter.ContractTypes.Contains(a.ContractType));
+            if (filter.WorkingTimeTypes.Count > 0) list.Add(a => filter.WorkingTimeTypes.Contains(a.WorkingTimeType));
+            if (filter.PositionLevels.Count > 0) list.Add(a => filter.PositionLevels.Contains(a.PositionLevel));
+            if (filter.Companies.Count > 0)
+            {
+                List<int> companiesIds = filter.Companies.Select(c => c.Id).ToList();
+                list.Add(a => companiesIds.Contains(a.CompanyId));
+            }
+            if (filter.Categories.Count > 0)
+            {
+                List<int> categoriesIds = filter.Categories.Select(c => c.Id).ToList();
+                list.Add(a => categoriesIds.Contains(a.CategoryId));
+            }
+
+            var tableQuery = await base.GetFileteredTableQueryAsync<Advertisement>(page, pageSize, list.ToArray());
             return await JoinTable(tableQuery);
         }
 
@@ -78,9 +97,25 @@ namespace Projekt.Models.Repositories
             });
         }
 
-        public async Task<int> GetAdvertisementsCount()
+        public async Task<int> GetAdvertisementsCount(ViewModels.Filter filter)
         {
-            return await base.GetFileteredCountAsync<Advertisement>(_ => true);
+            List<Expression<Func<Advertisement, bool>>> list = new List<Expression<Func<Advertisement, bool>>>();
+            list.Add(a => a.Position.ToLower().Contains(filter.Position.ToLower()));
+            if (filter.JobTypes.Count > 0) list.Add(a => filter.JobTypes.Contains(a.JobType));
+            if (filter.ContractTypes.Count > 0) list.Add(a => filter.ContractTypes.Contains(a.ContractType));
+            if (filter.WorkingTimeTypes.Count > 0) list.Add(a => filter.WorkingTimeTypes.Contains(a.WorkingTimeType));
+            if (filter.PositionLevels.Count > 0) list.Add(a => filter.PositionLevels.Contains(a.PositionLevel));
+            if (filter.Companies.Count > 0)
+            {
+                List<int> companiesIds = filter.Companies.Select(c => c.Id).ToList();
+                list.Add(a => companiesIds.Contains(a.CompanyId));
+            }
+            if (filter.Categories.Count > 0)
+            {
+                List<int> categoriesIds = filter.Categories.Select(c => c.Id).ToList();
+                list.Add(a => categoriesIds.Contains(a.CategoryId));
+            }
+            return await base.GetFileteredCountAsync<Advertisement>(list.ToArray());
         }
 
         public async Task<bool> AddAdvertisement(Advertisement advertisement)

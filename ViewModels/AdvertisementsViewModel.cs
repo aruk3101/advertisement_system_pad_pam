@@ -1,9 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Projekt.Models.Common.Enumerated;
 using Projekt.Models.Common.Utilities;
 using Projekt.Models.Entities;
 using Projekt.Models.Repositories;
+using Projekt.Views.PopUps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +33,16 @@ namespace Projekt.ViewModels
 
         private AdvertisementsRepository advertisementsRepository;
         private AddEditAdvertisementViewModel addEditAdvertisementViewModel;
+        private AdvertisementFilterViewModel advertisementFilterViewModel;
 
         public AdvertisementsViewModel(AdvertisementsRepository advertisementsRepository,
             AddEditAdvertisementViewModel addEditAdvertisementViewModel,
-            AppShellViewModel appShellViewModel)
+            AppShellViewModel appShellViewModel,
+            AdvertisementFilterViewModel advertisementFilterViewModel)
         {
             this.advertisementsRepository = advertisementsRepository;
             this.addEditAdvertisementViewModel = addEditAdvertisementViewModel;
+            this.advertisementFilterViewModel = advertisementFilterViewModel;
         }
 
         private bool IsAuthorized()
@@ -80,8 +85,9 @@ namespace Projekt.ViewModels
         public async Task UpdateAdvertisements()
         {
             IsRefreshing = true;
-            Advertisements = await advertisementsRepository.GetAdvertisements(Page, pageSize);
-            advertisementsCount = await advertisementsRepository.GetAdvertisementsCount();
+            Filter filter = advertisementFilterViewModel.Filter;
+            Advertisements = await advertisementsRepository.GetAdvertisements(Page, pageSize, filter);
+            advertisementsCount = await advertisementsRepository.GetAdvertisementsCount(filter);
             MaxPage = Convert.ToInt32(Math.Ceiling(advertisementsCount / (double)pageSize));
             if (MaxPage == 0) MaxPage = 1;
             IsRefreshing = false;
@@ -116,6 +122,15 @@ namespace Projekt.ViewModels
                 {"advertisement",advertisement}
             };
             await AppShell.Current.GoToAsync("advertisement", true, args);
+        }
+
+        [RelayCommand]
+        public async Task Filter()
+        {
+            var popup = new AdvertisementFilterPopUp();
+            await advertisementFilterViewModel.Setup(); // aktualizuje liste kategorii i firm
+            await AppShell.Current.ShowPopupAsync(popup);
+            await UpdateAdvertisements();
         }
     }
 }
