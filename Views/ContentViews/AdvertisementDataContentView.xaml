@@ -7,10 +7,6 @@
              xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
              xmlns:entities="clr-namespace:Projekt.Models.Entities">
     <VerticalStackLayout>
-        <userControls:Input Placeholder="Nazwa firmy"
-            IconSource="person_icon.png"
-            Text="{Binding E.CompanyName, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
-            ErrorMessage="{Binding Errors[CompanyNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}}"/>
         <userControls:Input Placeholder="Stanowisko"
             IconSource="person_icon.png"
             Text="{Binding E.Position, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
@@ -49,6 +45,14 @@
              ItemsSource="{Binding Categories}"
              SelectedItem="{Binding E.Category, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
              ItemDisplayBinding="{Binding Name}"/>
+        <Picker
+             Title="Firma"
+             TitleColor="Black"
+             TextColor="Black"
+             HorizontalOptions="FillAndExpand"
+             ItemsSource="{Binding Companies}"
+             SelectedItem="{Binding E.Company, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditAdvertisementViewModel}}, Mode=TwoWay}"
+             ItemDisplayBinding="{Binding CompanyName}"/>
         <Picker
              Title="Typ kontraktu"
              TitleColor="Black"

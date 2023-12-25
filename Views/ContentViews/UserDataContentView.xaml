@@ -13,7 +13,6 @@
                      BorderColor="Black"
                      Source="{Binding ProfilePictureSource, Source={RelativeSource AncestorType={x:Type viewmodels:UserDataViewModel}}, Mode=TwoWay}"
                      Command="{Binding ChoosePictureCommand}">
-            
         </ImageButton>
         <userControls:Input Placeholder="Imię"
                              IconSource="person_icon.png"

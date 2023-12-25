@@ -42,6 +42,14 @@ namespace Projekt.Models.Repositories
                         a.Category = c;
                         return a;
                     })
+                .Join(await base.GetTableQuery<Company>(),
+                    a => a.CompanyId,
+                    c => c.Id,
+                    (a, c) =>
+                    {
+                        a.Company = c;
+                        return a;
+                    })
                 .GroupJoin(await base.GetTableQuery<Requirement>(),
                     a => a.Id,
                     r => r.AdvertisementId,
