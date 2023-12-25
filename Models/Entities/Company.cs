@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
-using Microsoft.UI.Xaml.CustomAttributes;
 using Projekt.Models.Common;
 using SQLite;
 using System;
