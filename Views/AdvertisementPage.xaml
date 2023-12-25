@@ -64,7 +64,7 @@
                     <AbsoluteLayout HeightRequest="150">
                         <BoxView AbsoluteLayout.LayoutFlags="All"
                                  AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                 Color="Black"/>
+                                 Color="{Binding Advertisement.Company.BannerColorBrush.Color}"/>
                         <Border AbsoluteLayout.LayoutFlags="PositionProportional"
                                 AbsoluteLayout.LayoutBounds="1,1,100,100"
                                 TranslationY="50"
@@ -73,11 +73,19 @@
                                 StrokeThickness="5"
                                 Stroke="{StaticResource Primary}"
                                 BackgroundColor="{StaticResource Primary30}">
+                            <Image Source="{Binding Advertisement.Company.PictureSource}"
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   Aspect="AspectFill"/>
                         </Border>
                     </AbsoluteLayout>
                     <VerticalStackLayout Style="{StaticResource contentGroupStack}">
-                        <Label Text="{Binding Advertisement.CompanyName}"
+                        <Label Text="{Binding Advertisement.Company.CompanyName}"
                                FontSize="32"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Advertisement.Company.Address}"
+                               TextColor="{StaticResource Gray500}"
+                               FontSize="16"
                                FontAttributes="Bold"/>
                         <Label Text="{Binding Advertisement.Position}"
                                FontSize="16"/>

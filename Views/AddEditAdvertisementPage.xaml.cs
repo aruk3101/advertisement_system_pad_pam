@@ -19,26 +19,6 @@ public partial class AddEditAdvertisementPage : ContentPage
         "Dodatki",
     };
 
-    public static Advertisement SelectedAdvertisement { get; set; }
-    public Advertisement Advertisement
-    {
-        set
-        {
-            SelectedAdvertisement = value;
-            if (value == null) { 
-                //dodawanie
-                BindableLayout.SetItemsSource(flexLayout, addAdvertisementRadioButtonsContentList);
-            }
-            else
-            {
-                //edycja
-                BindableLayout.SetItemsSource(flexLayout, editAdvertisementRadioButtonsContentList);
-            }
-            SelectContent((flexLayout.Children[0] as RadioButton).Content as string);
-            (flexLayout.Children[0] as RadioButton).IsChecked = true;
-        }
-    }
-
     public AddEditAdvertisementPage(AddEditAdvertisementViewModel vm)
     {
         InitializeComponent();
@@ -47,7 +27,18 @@ public partial class AddEditAdvertisementPage : ContentPage
         {
             BindableLayout.SetItemsSource(flexLayout, addAdvertisementRadioButtonsContentList);
         }
-        SelectedAdvertisement = null;
+        if (vm.E == null)
+        {
+            //dodawanie
+            BindableLayout.SetItemsSource(flexLayout, addAdvertisementRadioButtonsContentList);
+        }
+        else
+        {
+            //edycja
+            BindableLayout.SetItemsSource(flexLayout, editAdvertisementRadioButtonsContentList);
+        }
+        //SelectContent((flexLayout.Children[0] as RadioButton).Content as string);
+        (flexLayout.Children[0] as RadioButton).IsChecked = true;
     }
 
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)

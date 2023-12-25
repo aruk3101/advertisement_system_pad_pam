@@ -15,7 +15,9 @@ namespace Projekt.Models.Entities
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int CategoryId { get; set; }
-        public string CompanyName { get; set; }
+        public int CompanyId { get; set; }
+        [Ignore]
+        public Company Company { get; set; }
         public string Position { get; set; }
         public PositionLevel PositionLevel { get; set; }
         public ContractType ContractType { get; set; }

@@ -90,6 +90,7 @@ namespace Projekt.Models
         protected async Task<TableQuery<TTable>> GetTableQuery<TTable>()
             where TTable : class, new()
         {
+            await CreateTableIfNotExists<TTable>();
             return await Task.Run(() =>
             {
                 return SynchronousDatabase.Table<TTable>();

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.AddEditCompanyPage"
+             Title="AddEditCompanyPage"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:AddEditCompanyViewModel"
+             xmlns:userControls="clr-namespace:Projekt.Views.UserControls">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Background="{StaticResource Primary30}">
+            <userControls:Input Placeholder="Nazwa firmy"
+                IconSource="person_icon.png"
+                Text="{Binding E.CompanyName, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditCompanyViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[CompanyNameEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditCompanyViewModel}}}"/>
+            <userControls:Input Placeholder="Adres firmy"
+                IconSource="person_icon.png"
+                Text="{Binding E.Address, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditCompanyViewModel}}, Mode=TwoWay}"
+                ErrorMessage="{Binding Errors[AddressEntry], Source={RelativeSource AncestorType={x:Type viewmodels:AddEditCompanyViewModel}}}"/>
+            <ImageButton WidthRequest="100"
+                         HeightRequest="100"
+                         CornerRadius="50"
+                         BorderWidth="2"
+                         BorderColor="Black"
+                         Source="{Binding PictureSource, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditCompanyViewModel}}, Mode=TwoWay}"
+                         Aspect="AspectFill"
+                         Command="{Binding ChoosePictureCommand}"
+                         Clicked="ImageButton_Clicked">
+            </ImageButton>
+            <Picker x:Name="bannerColorPicker"
+                 Title="Kolor bannera"
+                 TitleColor="Black"
+                 TextColor="Black"
+                 HorizontalOptions="FillAndExpand"
+                 SelectedItem="{Binding E.BannerColorBrush, Source={RelativeSource AncestorType={x:Type viewmodels:AddEditCompanyViewModel}}, Mode=TwoWay}"
+                 ItemDisplayBinding="{Binding Name}">
+                
+            </Picker>
+
+            <Button Text="Dodaj" Command="{Binding SubmitCommand}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

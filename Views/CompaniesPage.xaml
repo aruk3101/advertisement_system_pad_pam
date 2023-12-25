@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.CompaniesPage"
+             Title="CompaniesPage"
+             Shell.FlyoutBehavior="Flyout"
+             xmlns:viewmodels ="clr-namespace:Projekt.ViewModels"
+             xmlns:entities="clr-namespace:Projekt.Models.Entities"
+             xmlns:usercontrols="clr-namespace:Projekt.Views.UserControls"
+             x:DataType="viewmodels:CompaniesViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <RefreshView AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Command="{Binding UpdateCompaniesCommand}"
+                         IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Label Text="Firmy" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                    <ListView ItemsSource="{Binding Companies}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="entities:Company">
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem 
+                                                IconImageSource="edit_icon.png"
+                                                Clicked="MenuItem_Clicked_1"
+                                                CommandParameter="{Binding .}">
+                                        </MenuItem>
+                                    </ViewCell.ContextActions>
+                                    <StackLayout>
+                                        <Label Text="{Binding CompanyName}"/>
+                                        <Label Text="{Binding Address}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+
+        <usercontrols:FloatingAddButton Clicked="FloatingAddButton_Clicked_1"/>
+    </AbsoluteLayout>
+</ContentPage>

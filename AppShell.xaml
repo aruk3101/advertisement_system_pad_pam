@@ -30,6 +30,15 @@
             ContentTemplate="{DataTemplate views:UserProfilePage}"/>
         </Tab>
     </FlyoutItem>
+    
+    <FlyoutItem Title="Firmy"
+            IsVisible="{Binding IsAdmin}"
+            Icon="home_icon.png">
+        <Tab>
+            <ShellContent
+        ContentTemplate="{DataTemplate views:CompaniesPage}"/>
+        </Tab>
+    </FlyoutItem>
 
     <FlyoutItem Title="Ogłoszenia"
              Icon="home_icon.png">

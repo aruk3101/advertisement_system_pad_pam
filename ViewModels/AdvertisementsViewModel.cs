@@ -49,7 +49,7 @@ namespace Projekt.ViewModels
         public async Task Add()
         {
             if (!IsAuthorized()) return;
-            addEditAdvertisementViewModel.E = new Advertisement();
+            await addEditAdvertisementViewModel.SetupAdvertisement(new Advertisement());
             await AppShell.Current.GoToAsync("addEditAdvertisement", new Dictionary<string, object>()
             {
                 {"advertisement", null}

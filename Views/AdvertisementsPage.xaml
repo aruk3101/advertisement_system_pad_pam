@@ -45,7 +45,7 @@
                                                   CommandParameter="{Binding .}"/>
                                     </ViewCell.ContextActions>
                                     <StackLayout>
-                                        <Label Text="{Binding CompanyName}"/>
+                                        <Label Text="{Binding Company.CompanyName}"/>
                                         <Label Text="{Binding Position}"/>
                                     </StackLayout>
                                 </ViewCell>

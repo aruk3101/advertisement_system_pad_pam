@@ -22,6 +22,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("addEditAdvertisement", typeof(AddEditAdvertisementPage));
         Routing.RegisterRoute("advertisement", typeof(AdvertisementPage));
         Routing.RegisterRoute("applied", typeof(AppliedAdvertisementsPage));
+        Routing.RegisterRoute("companies", typeof(CompaniesPage));
+        Routing.RegisterRoute("addEditCompany", typeof(AddEditCompanyPage));
     }
     protected override void OnHandlerChanged()
     {
