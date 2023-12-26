@@ -83,5 +83,24 @@ namespace Projekt.Models.Entities
         public string CareerSummary { get; set; }
 
         public Role Role { get; set; } = Role.USER;
+
+        [Ignore]
+        public List<Course> Courses { get; set; }
+
+        [Ignore]
+        public List<Education> Educations { get; set; }
+
+        [Ignore]
+        public List<Experience> Experiences { get; set; }
+
+        [Ignore]
+        public List<Language> Languages { get; set; }
+
+        [Ignore]
+        public List<Link> Links { get; set; }
+
+        [Ignore]
+        public List<Skill> Skills { get; set; }
+
     }
 }

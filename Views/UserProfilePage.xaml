@@ -9,6 +9,7 @@
              Shell.FlyoutBehavior="Flyout">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout Background="{StaticResource Primary30}">
+            <Button Text="Generuj CV" Clicked="Button_Clicked"></Button>
             <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap" JustifyContent="Center" x:Name="flexLayout">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>

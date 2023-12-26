@@ -44,4 +44,9 @@ public partial class UserProfilePage : ContentPage
         }
         currentContentView.IsVisible = true;
     }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await ((UserProfileViewModel)this.BindingContext).CreateCv();
+    }
 }

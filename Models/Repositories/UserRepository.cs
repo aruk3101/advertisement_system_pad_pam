@@ -1,5 +1,6 @@
 ﻿using Projekt.Models.Entities;
 using Projekt.Properties;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,67 @@ namespace Projekt.Models.Repositories
         public async Task<User> FindById(int id)
         {
             return await base.GetItemByKeyAsync<User>(id);
+        }
+
+        public async Task<User> FindByIdJoined(int id)
+        {
+            var table = await base.GetFileteredTableQueryAsync<User>(1, 1, u => u.Id == id);
+            var result = await JoinTable(table);
+            return result.FirstOrDefault(defaultValue: null);
+        }
+
+        private async Task<List<User>> JoinTable(TableQuery<User> table)
+        {
+            return table
+                .GroupJoin(await base.GetTableQuery<Skill>(),
+                    o => o.Id,
+                    i => i.UserId,
+                    (o, i) =>
+                    {
+                        o.Skills = i.ToList();
+                        return o;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Link>(),
+                    o => o.Id,
+                    i => i.UserId,
+                    (o, i) =>
+                    {
+                        o.Links = i.ToList();
+                        return o;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Language>(),
+                    o => o.Id,
+                    i => i.UserId,
+                    (o, i) =>
+                    {
+                        o.Languages = i.ToList();
+                        return o;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Experience>(),
+                    o => o.Id,
+                    i => i.UserId,
+                    (o, i) =>
+                    {
+                        o.Experiences = i.ToList();
+                        return o;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Education>(),
+                    o => o.Id,
+                    i => i.UserId,
+                    (o, i) =>
+                    {
+                        o.Educations = i.ToList();
+                        return o;
+                    })
+                 .GroupJoin(await base.GetTableQuery<Course>(),
+                    o => o.Id,
+                    i => i.UserId,
+                    (o, i) =>
+                    {
+                        o.Courses = i.ToList();
+                        return o;
+                    })
+                .ToList();
         }
 
         public async Task<bool> Update(User user)
