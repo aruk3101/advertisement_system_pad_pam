@@ -5,6 +5,7 @@ using Projekt.Properties;
 using Projekt.ViewModels;
 using Projekt.Views;
 using Projekt.Views.ContentViews;
+using Projekt.Views.PopUps;
 
 namespace Projekt;
 
@@ -104,6 +105,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<AddEditCompanyPage>();
         builder.Services.AddSingleton<AddEditCompanyViewModel>();
+
+        builder.Services.AddSingleton<AdvertisementFilterViewModel>();
+        builder.Services.AddSingleton<AdvertisementFilterPopUp>();
 
 
         return builder.Build();

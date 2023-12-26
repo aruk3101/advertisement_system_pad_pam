@@ -26,6 +26,7 @@
                     <Label Text="{Binding Page, StringFormat='{Strona : {0}}'}"
                            HorizontalTextAlignment="Center"
                            HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Filtr" Command="{Binding FilterCommand}"/>
                     <ListView ItemsSource="{Binding Advertisements}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="entities:Advertisement">

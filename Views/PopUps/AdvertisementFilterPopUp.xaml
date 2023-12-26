@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.PopUps.AdvertisementFilterPopUp"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
+             x:DataType="viewmodels:AdvertisementFilterViewModel"
+             xmlns:converters="clr-namespace:Projekt.Converters"
+             xmlns:entities="clr-namespace:Projekt.Models.Entities"
+             x:Name="popup">
+    <ScrollView MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}"
+                MinimumHeightRequest="400"
+                Padding="20">
+        <VerticalStackLayout>
+            <VerticalStackLayout.Resources>
+                <ResourceDictionary>
+                    <converters:JobTypeConverter x:Key="jobTypeConverter" />
+                    <converters:ContractTypeConverter x:Key="contractTypeConverter" />
+                    <converters:PositionLevelConverter x:Key="positionLevelConverter" />
+                    <converters:WorkingTimeTypeConverter x:Key="workingTimeTypeConverter" />
+                    <converters:CategoryConverter x:Key="categoryConverter" />
+                    <converters:CompanyConverter x:Key="companyConverter" />
+                </ResourceDictionary>
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="Black"/>
+                </Style>
+            </VerticalStackLayout.Resources>
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label>Rodzaj pracy</Label>
+                <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap">
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="JobTypes"/>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BindingContext="{Binding .}" VerticalOptions="CenterAndExpand">
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource Key=jobTypeConverter}">
+                                                <Binding Path="Filter.JobTypes" Source="{RelativeSource AncestorType={x:Type viewmodels:AdvertisementFilterViewModel}}"/>
+                                                <Binding Path="."/>
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Label Text="{Binding .}" TextColor="Black" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="Transparent">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label>Rodzaj umowy</Label>
+                <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap">
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="ContractTypes"/>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BindingContext="{Binding .}" VerticalOptions="CenterAndExpand">
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource Key=contractTypeConverter}">
+                                                <Binding Path="Filter.ContractTypes" Source="{RelativeSource AncestorType={x:Type viewmodels:AdvertisementFilterViewModel}}"/>
+                                                <Binding Path="."/>
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Label Text="{Binding .}" TextColor="Black" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="Transparent">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label>Poziom stanowiska</Label>
+                <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap">
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="PositionLevels"/>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BindingContext="{Binding .}" VerticalOptions="CenterAndExpand">
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource Key=positionLevelConverter}">
+                                                <Binding Path="Filter.PositionLevels" Source="{RelativeSource AncestorType={x:Type viewmodels:AdvertisementFilterViewModel}}"/>
+                                                <Binding Path="."/>
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Label Text="{Binding .}" TextColor="Black" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="Transparent">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label>Wymiar czasu pracy</Label>
+                <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap">
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="WorkingTimeTypes"/>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BindingContext="{Binding .}" VerticalOptions="CenterAndExpand">
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource Key=workingTimeTypeConverter}">
+                                                <Binding Path="Filter.WorkingTimeTypes" Source="{RelativeSource AncestorType={x:Type viewmodels:AdvertisementFilterViewModel}}"/>
+                                                <Binding Path="."/>
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Label Text="{Binding .}" TextColor="Black" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="Transparent">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label>Kategoria</Label>
+                <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap">
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="Categories"/>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BindingContext="{Binding .}" VerticalOptions="CenterAndExpand">
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource Key=categoryConverter}">
+                                                <Binding Path="Filter.Categories" Source="{RelativeSource AncestorType={x:Type viewmodels:AdvertisementFilterViewModel}}"/>
+                                                <Binding Path="."/>
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Label Text="{Binding Name}" x:DataType="entities:Category" TextColor="Black" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="Transparent">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label>Firma</Label>
+                <FlexLayout FlexLayout.Basis="Auto" Wrap="Wrap">
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="Companies"/>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox BindingContext="{Binding .}" VerticalOptions="CenterAndExpand">
+                                        <CheckBox.IsChecked>
+                                            <MultiBinding Converter="{StaticResource Key=companyConverter}">
+                                                <Binding Path="Filter.Companies" Source="{RelativeSource AncestorType={x:Type viewmodels:AdvertisementFilterViewModel}}"/>
+                                                <Binding Path="."/>
+                                            </MultiBinding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                    <Label Text="{Binding CompanyName}" x:DataType="entities:Company" TextColor="Black" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Background="Transparent">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Label Text="Stanowisko"/>
+                <Entry Text="{Binding Filter.Position, Mode=TwoWay}"/>
+            </StackLayout>
+            <Button Clicked="Button_Clicked" Text="Submit" VerticalOptions="End"></Button>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</mct:Popup>

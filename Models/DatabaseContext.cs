@@ -97,22 +97,30 @@ namespace Projekt.Models
             });
         }
 
-        protected async Task<TableQuery<TTable>> GetFileteredTableQueryAsync<TTable>(Expression<Func<TTable, bool>> predicate,
+        protected async Task<TableQuery<TTable>> GetFileteredTableQueryAsync<TTable>(
             int page,
-            int pageSize)
+            int pageSize,
+            params Expression<Func<TTable, bool>>[] predicates)
             where TTable : class, new()
         {
             var table = await GetTableQuery<TTable>();
             page--;
-            return table.Where(predicate)
-            .Skip(page * pageSize)
+            foreach(Expression<Func<TTable, bool>> predicate in predicates)
+            {
+                table = table.Where(predicate);
+            };
+            return table.Skip(page * pageSize)
             .Take(pageSize);
         }
 
-        protected async Task<int> GetFileteredCountAsync<TTable>(Expression<Func<TTable, bool>> predicate) where TTable : class, new()
+        protected async Task<int> GetFileteredCountAsync<TTable>(params Expression<Func<TTable, bool>>[] predicates) where TTable : class, new()
         {
             var table = await GetTableAsync<TTable>();
-            return await table.Where(predicate).CountAsync();
+            foreach (Expression<Func<TTable, bool>> predicate in predicates)
+            {
+                table = table.Where(predicate);
+            };
+            return await table.CountAsync();
         }
 
         protected async Task<TTable> GetItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
