@@ -4,7 +4,13 @@
              x:Class="Projekt.Views.UserControls.DateInput">
     <StackLayout Margin="5">
         <Border Stroke="{StaticResource Primary30}"
-                StrokeThickness="1">
+                StrokeThickness="1" StrokeShape="RoundRectangle 15,15,15,15">
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Offset="5,5"
+                        Radius="10"
+                        Opacity="0.8" />
+            </Border.Shadow>
             <StackLayout BackgroundColor="{StaticResource White}">
                 <StackLayout Orientation="Horizontal">
                     <Image WidthRequest="50"

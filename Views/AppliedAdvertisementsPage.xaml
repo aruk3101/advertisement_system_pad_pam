@@ -6,32 +6,89 @@
              xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
              x:DataType="viewmodels:AppliedAdvertisementsViewModel"
              xmlns:entites="clr-namespace:Projekt.Models.Entities"
-             Shell.FlyoutBehavior="Flyout">
-    <RefreshView HorizontalOptions="FillAndExpand"
-                     VerticalOptions="FillAndExpand"
-                     Command="{Binding UpdateAdvertisementsCommand}"
-                     IsRefreshing="{Binding IsRefreshing}">
-            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <VerticalStackLayout>
-                    <Label Text="Zaaplikowane ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
-                    <ListView ItemsSource="{Binding Advertisements}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="entites:Advertisement">
-                                <ViewCell>
-                                    <ViewCell.ContextActions>
-                                        <MenuItem IconImageSource="info_icon.png"
-                                          Clicked="MenuItem_Clicked_3"
-                                          CommandParameter="{Binding .}"/>
-                                    </ViewCell.ContextActions>
-                                    <StackLayout>
-                                        <Label Text="{Binding Company.CompanyName}"/>
-                                        <Label Text="{Binding Position}"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </VerticalStackLayout>
-            </ScrollView>
-        </RefreshView>
+             Shell.FlyoutBehavior="Flyout"
+             BackgroundColor="{StaticResource Primary30}">
+    <RefreshView AbsoluteLayout.LayoutFlags="All"
+                      AbsoluteLayout.LayoutBounds="0,0,1,1"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      Command="{Binding UpdateAdvertisementsCommand}"
+                      IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView>
+            <VerticalStackLayout VerticalOptions="FillAndExpand">
+                <Label Text="Zaaplikowane Ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                <ListView ItemsSource="{Binding Advertisements}" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="entites:Advertisement">
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem IconImageSource="info_icon.png"
+                                           Clicked="MenuItem_Clicked_3"
+                                           CommandParameter="{Binding .}"/>
+                                </ViewCell.ContextActions>
+                                <Border Margin="20,10"
+                                     StrokeThickness="0"
+                                     StrokeShape="RoundRectangle 25,25,25,25"
+                                     VerticalOptions="FillAndExpand">
+                                    <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <StackLayout BackgroundColor="White"
+                                                   Padding="20"
+                                                   Orientation="Horizontal">
+                                            <StackLayout.Resources>
+                                                <Style TargetType="Label">
+                                                    <Setter Property="TextColor" Value="Black"/>
+                                                </Style>
+                                            </StackLayout.Resources>
+                                            <Border Margin="20,10"
+                                                  StrokeShape="RoundRectangle 25,25,25,25"
+                                                  StrokeThickness="5"
+                                                  Stroke="{Binding Company.BannerColorBrush}"
+                                                  BackgroundColor="{StaticResource Primary30}">
+                                                <Image Source="{Binding Company.PictureSource}"
+                                                     WidthRequest="100"
+                                                     HeightRequest="100"
+                                                     Aspect="AspectFill"/>
+                                            </Border>
+                                            <StackLayout VerticalOptions="CenterAndExpand">
+                                                <Label Text="{Binding Position}" FontSize="24"/>
+                                                <Label Text="{Binding Company.CompanyName}" FontSize="16"/>
+                                                <Label TextColor="{StaticResource Gray500}" FontSize="14">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <FormattedString.Spans>
+                                                                <Span Text="{Binding SalaryFrom, StringFormat='{}{0}PLN'}"/>
+                                                                <Span Text=" - "/>
+                                                                <Span Text="{Binding SalaryTo, StringFormat='{}{0}PLN'}"/>
+                                                            </FormattedString.Spans>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                                <Label TextColor="{StaticResource Gray500}" FontSize="14" LineBreakMode="TailTruncation">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <FormattedString.Spans>
+                                                                <Span Text="{Binding JobType}"/>
+                                                                <Span Text=" ● "/>
+                                                                <Span Text="{Binding ContractType}"/>
+                                                                <Span Text=" ● "/>
+                                                                <Span Text="{Binding WorkingTimeType}"/>
+                                                                <Span Text=" ● "/>
+                                                                <Span Text="{Binding PositionLevel}"/>
+                                                            </FormattedString.Spans>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ScrollView>
+                                </Border>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

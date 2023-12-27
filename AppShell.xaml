@@ -14,17 +14,29 @@
         <converters:NegativeValueConverter x:Key="negativeValueConverter" />
     </Shell.Resources>
 
+    <Shell.FlyoutHeader>
+        <StackLayout Padding="20" BackgroundColor="{StaticResource Primary60}">
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                </Style>
+            </StackLayout.Resources>
+            <Label Text="Projekt na PAM&amp;PAD" FontSize="24"/>
+            <Label Text=".NET MAUI" FontSize="18" TextColor="{StaticResource Gray500}"/>
+            <Label Text="Damian Raczek ®" FontSize="18"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
     <FlyoutItem Title="Dashboard"
-            Icon="home_icon.png">
+                Icon="home_icon.png">
         <Tab>
-            <ShellContent
-                ContentTemplate="{DataTemplate views:DashBoardPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:DashBoardPage}"/>
         </Tab>
     </FlyoutItem>
-
-    <FlyoutItem Title="Profil"
+    
+    <FlyoutItem Title="{Binding User.Email}"
                 IsVisible="{Binding IsAdmin, Converter={StaticResource negativeValueConverter}}"
-                Icon="home_icon.png">
+                Icon="{Binding User.ProfilePictureSource}">
         <Tab>
             <ShellContent
             ContentTemplate="{DataTemplate views:UserProfilePage}"/>
@@ -33,7 +45,7 @@
     
     <FlyoutItem Title="Firmy"
             IsVisible="{Binding IsAdmin}"
-            Icon="home_icon.png">
+            Icon="company_icon.png">   
         <Tab>
             <ShellContent
         ContentTemplate="{DataTemplate views:CompaniesPage}"/>
@@ -41,7 +53,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Ogłoszenia"
-             Icon="home_icon.png">
+             Icon="advertisement_icon.png">
         <Tab>
             <ShellContent
          ContentTemplate="{DataTemplate views:AdvertisementsPage}"/>
@@ -49,10 +61,10 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Zaaplikowane"
-            Icon="home_icon.png">
+            Icon="applied_icon.png">
         <Tab>
-            <ShellContent
-        ContentTemplate="{DataTemplate views:AppliedAdvertisementsPage}"/>
+            <ShellContent 
+                ContentTemplate="{DataTemplate views:AppliedAdvertisementsPage}"/>
         </Tab>
     </FlyoutItem>
 

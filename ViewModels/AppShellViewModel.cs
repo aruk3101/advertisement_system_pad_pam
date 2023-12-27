@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Projekt.Models.Entities;
+using Projekt.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,10 @@ namespace Projekt.ViewModels
     {
         [ObservableProperty]
         bool isAdmin;
+
+        [ObservableProperty]
+        User user;
+
+
     }
 }

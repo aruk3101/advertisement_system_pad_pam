@@ -8,7 +8,8 @@
              x:DataType="viewmodels:UserEducationViewModel"
              xmlns:userControls="clr-namespace:Projekt.Views.UserControls"
              Size="210">
-    <ScrollView Padding="30" MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}">
+    <ScrollView Padding="30" MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}"
+                MaximumWidthRequest="800">
         <VerticalStackLayout>
             <userControls:Input x:Name="SchoolNameEntry"
                  Placeholder="Nazwa szkoły"

@@ -50,7 +50,10 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\bg.jpg" />
 	  <None Remove="Resources\Images\icons\add_icon.png" />
+	  <None Remove="Resources\Images\icons\advertisement_icon.png" />
+	  <None Remove="Resources\Images\icons\applied_icon.png" />
 	  <None Remove="Resources\Images\icons\benefit_icon.png" />
+	  <None Remove="Resources\Images\icons\company_icon.png" />
 	  <None Remove="Resources\Images\icons\delete_icon.png" />
 	  <None Remove="Resources\Images\icons\edit_icon.png" />
 	  <None Remove="Resources\Images\icons\person_icon.png" />
@@ -175,7 +178,10 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\icons\add_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\advertisement_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\applied_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\benefit_icon.png" />
+	  <MauiImage Include="Resources\Images\icons\company_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\delete_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\edit_icon.png" />
 	  <MauiImage Include="Resources\Images\icons\home_icon.png" />

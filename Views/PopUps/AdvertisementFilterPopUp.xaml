@@ -8,7 +8,8 @@
              xmlns:converters="clr-namespace:Projekt.Converters"
              xmlns:entities="clr-namespace:Projekt.Models.Entities"
              x:Name="popup">
-    <ScrollView MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}"
+    <ScrollView WidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}"
+                MaximumWidthRequest="800"
                 MinimumHeightRequest="400"
                 Padding="20">
         <VerticalStackLayout>

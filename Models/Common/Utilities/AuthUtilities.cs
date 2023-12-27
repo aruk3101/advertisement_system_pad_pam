@@ -27,6 +27,7 @@ namespace Projekt.Models.Common.Utilities
             {
                 LoggedInUserId = user.Id;
                 LoggedInUserRole = user.Role;
+                _appShellViewModel.User = user;
                 if (user.Role == Role.ADMIN) _appShellViewModel.IsAdmin = true;
                 return true;
             }

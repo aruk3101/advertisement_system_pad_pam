@@ -45,6 +45,6 @@ public partial class AppShell : Shell
     private void Button_Clicked_2(object sender, EventArgs e)
     {
         AuthUtilities.LogOut();
-        App.Current.MainPage = new NavigationPage(this.Handler.MauiContext.Services.GetService<MainPage>());
+        App.Current.MainPage = new NavigationPage(new Views.MainPage());
     }
 }

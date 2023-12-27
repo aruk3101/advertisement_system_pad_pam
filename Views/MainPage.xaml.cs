@@ -4,10 +4,15 @@ namespace Projekt.Views;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage(MainViewModel vm)
+	public MainPage()
 	{
 		InitializeComponent();
-		this.BindingContext = vm;
+    }
+
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+        this.BindingContext = this.Handler.MauiContext.Services.GetService<MainViewModel>();
     }
 
     private void Button_Clicked(object sender, EventArgs e)

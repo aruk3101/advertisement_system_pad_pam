@@ -21,7 +21,8 @@ namespace Projekt.Models.Repositories
         public async Task<List<Advertisement>> GetAdvertisements(IEnumerable<Applied> applied)
         {
             var appliedAdsIds = applied.Select(a => a.AdvertisementId);
-            var result = await base.GetFileteredAsync<Advertisement>(a => appliedAdsIds.Contains(a.Id));
+            var table = await base.GetFileteredTableQueryAsync<Advertisement>(1, 99999, a => appliedAdsIds.Contains(a.Id));
+            var result = await JoinTable(table);
             return result.ToList();
         }
 

@@ -43,12 +43,15 @@ namespace Projekt.ViewModels
 
         private UserRepository userRepository;
         private AuthUtilities authUtilities;
+        private AppShellViewModel appShellViewModel;
 
         private User loggedInUser = null;
 
         public UserDataViewModel(UserRepository userRepository,
-            AuthUtilities authUtilities)
+            AuthUtilities authUtilities,
+            AppShellViewModel appShellViewModel)
         {
+            this.appShellViewModel = appShellViewModel;
             this.authUtilities = authUtilities;
             this.userRepository = userRepository;
             errors = new Dictionary<string, List<string>>()
@@ -120,6 +123,7 @@ namespace Projekt.ViewModels
                 }
                 else
                 {
+                    appShellViewModel.User = user;
                     await ShellUtilities.DisplayAlert("Sukces!",
                         "Pomyślnie edytowano profil");
                 }

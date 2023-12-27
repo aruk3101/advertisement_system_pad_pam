@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.AdvertisementsPage"
-             Title="AdvertisementsPage"
+             Title="Ogłoszenia"
              Shell.FlyoutBehavior="Flyout"
              xmlns:viewmodels ="clr-namespace:Projekt.ViewModels"
              xmlns:entities="clr-namespace:Projekt.Models.Entities"
              xmlns:usercontrols="clr-namespace:Projekt.Views.UserControls"
              x:DataType="viewmodels:AdvertisementsViewModel"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="{StaticResource Primary30}">
     <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <AbsoluteLayout.GestureRecognizers>
             <SwipeGestureRecognizer Direction="Left" Command="{Binding NextPageCommand}"/>
@@ -21,13 +22,13 @@
                              Command="{Binding UpdateAdvertisementsCommand}"
                              IsRefreshing="{Binding IsRefreshing}">
             <ScrollView>
-                <VerticalStackLayout>
+                <VerticalStackLayout VerticalOptions="FillAndExpand">
                     <Label Text="Ogłoszenia" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
-                    <Label Text="{Binding Page, StringFormat='{Strona : {0}}'}"
+                    <!--<Label Text="{Binding Page, StringFormat='{Strona : {0}}'}"
                            HorizontalTextAlignment="Center"
-                           HorizontalOptions="FillAndExpand"/>
+                           HorizontalOptions="FillAndExpand"/>-->
                     <Button Text="Filtr" Command="{Binding FilterCommand}"/>
-                    <ListView ItemsSource="{Binding Advertisements}">
+                    <ListView ItemsSource="{Binding Advertisements}" VerticalOptions="FillAndExpand" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="entities:Advertisement">
                                 <ViewCell>
@@ -45,10 +46,64 @@
                                                   Clicked="MenuItem_Clicked_3"
                                                   CommandParameter="{Binding .}"/>
                                     </ViewCell.ContextActions>
-                                    <StackLayout>
-                                        <Label Text="{Binding Company.CompanyName}"/>
-                                        <Label Text="{Binding Position}"/>
-                                    </StackLayout>
+                                    <Border Margin="20,10"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 25,25,25,25"
+                                            VerticalOptions="FillAndExpand">
+                                        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                            <StackLayout BackgroundColor="White"
+                                                          Padding="20"
+                                                          Orientation="Horizontal">
+                                                <StackLayout.Resources>
+                                                    <Style TargetType="Label">
+                                                        <Setter Property="TextColor" Value="Black"/>
+                                                    </Style>
+                                                </StackLayout.Resources>
+                                                <Border Margin="20,10"
+                                                         StrokeShape="RoundRectangle 25,25,25,25"
+                                                         StrokeThickness="5"
+                                                         Stroke="{Binding Company.BannerColorBrush}"
+                                                         BackgroundColor="{StaticResource Primary30}">
+                                                    <Image Source="{Binding Company.PictureSource}"
+                                                            WidthRequest="100"
+                                                            HeightRequest="100"
+                                                            Aspect="AspectFill"/>
+                                                </Border>
+                                                <StackLayout VerticalOptions="CenterAndExpand">
+                                                    <Label Text="{Binding Position}" FontSize="24"/>
+                                                    <Label Text="{Binding Company.CompanyName}" FontSize="16"/>
+                                                    <Label TextColor="{StaticResource Gray500}" FontSize="14">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <FormattedString.Spans>
+                                                                    <Span Text="{Binding SalaryFrom, StringFormat='{}{0}PLN'}"/>
+                                                                    <Span Text=" - "/>
+                                                                    <Span Text="{Binding SalaryTo, StringFormat='{}{0}PLN'}"/>
+                                                                </FormattedString.Spans>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+
+                                                    <Label TextColor="{StaticResource Gray500}" FontSize="14" LineBreakMode="TailTruncation">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <FormattedString.Spans>
+                                                                    <Span Text="{Binding JobType}"/>
+                                                                    <Span Text=" ● "/>
+                                                                    <Span Text="{Binding ContractType}"/>
+                                                                    <Span Text=" ● "/>
+                                                                    <Span Text="{Binding WorkingTimeType}"/>
+                                                                    <Span Text=" ● "/>
+                                                                    <Span Text="{Binding PositionLevel}"/>
+                                                                </FormattedString.Spans>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </Border>
+                                   
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

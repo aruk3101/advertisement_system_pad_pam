@@ -7,7 +7,8 @@
              xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
              x:DataType="viewmodels:UserLinksViewModel"
              xmlns:userControls="clr-namespace:Projekt.Views.UserControls">
-    <ScrollView Padding="30" MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}">
+    <ScrollView Padding="30" MinimumWidthRequest="{OnIdiom Phone=300, Tablet=420, Desktop=660}"
+                MaximumWidthRequest="800">
         <VerticalStackLayout>
             <userControls:Input x:Name="NameEntry"
                  Placeholder="Nazwa"
