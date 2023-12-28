@@ -5,7 +5,7 @@
              Title="Dashboard"
              Shell.FlyoutBehavior="Flyout"
              xmlns:viewmodels="clr-namespace:Projekt.ViewModels"
-             x:DataType="viewmodels:DashboardViewModel">
-    <VerticalStackLayout>
-    </VerticalStackLayout>
+             x:DataType="viewmodels:DashboardViewModel"
+             BackgroundColor="#970cad">
+    <Image Source="logo_color.png"/>
 </ContentPage>

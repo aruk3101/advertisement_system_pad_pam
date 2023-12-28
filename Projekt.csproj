@@ -59,6 +59,8 @@
 	  <None Remove="Resources\Images\icons\person_icon.png" />
 	  <None Remove="Resources\Images\icons\task_icon.png" />
 	  <None Remove="Resources\Images\landing_img.png" />
+	  <None Remove="Resources\Images\logo_color.png" />
+	  <None Remove="Resources\Images\logo_no_background.png" />
 	  <None Remove="Resources\Images\outline_info_white_24dp.png" />
 	  <None Remove="Resources\Images\person_FILL0_wght400_GRAD0_opsz24.png" />
 	</ItemGroup>
